@@ -1,21 +1,23 @@
 from django.db import models
 from PIL import Image
+from django_cryptography.fields import encrypt
+
 # Create your models here.
 
 class Inscription(models.Model):
-    nom = models.CharField(max_length=50, help_text='Rentrez votre nom')
-    prenom = models.CharField(max_length=50, help_text='Rentrez votre prénom')
-    date_naissance = models.DateTimeField(max_length=50, help_text='Rentrez votre date de naissance')
-    mail = models.CharField(max_length=50, help_text='Rentrez votre adresse email')
-    telephone = models.CharField(max_length=20, help_text='Rentrez votre numéro de téléphone')
-    adresse = models.CharField(max_length=50, help_text='Rentrez votre adresse')
-    code_postal = models.IntegerField(help_text='Rentrez votre code postal')
-    date_inscription = models.DateTimeField(max_length=50)
-    fiche_inscription = models.ImageField(upload_to='tkt')
-    certificat_medical = models.ImageField(upload_to='tkt2')
-    date_certificat = models.DateTimeField(max_length=50, null=True)
-    autorisation_parentale = models.ImageField(upload_to='tkt3')
-    photo = models.ImageField(upload_to='tkt4')
+    nom = encrypt(models.CharField(max_length=50, help_text='Rentrez votre nom'))
+    prenom = encrypt(models.CharField(max_length=50, help_text='Rentrez votre prénom'))
+    date_naissance = encrypt(models.DateTimeField(max_length=50, help_text='Rentrez votre date de naissance'))
+    mail = encrypt(models.CharField(max_length=50, help_text='Rentrez votre adresse email'))
+    telephone = encrypt(models.CharField(max_length=20, help_text='Rentrez votre numéro de téléphone'))
+    adresse = encrypt(models.CharField(max_length=50, help_text='Rentrez votre adresse'))
+    code_postal = encrypt(models.IntegerField(help_text='Rentrez votre code postal'))
+    date_inscription = encrypt(models.DateTimeField(max_length=50))
+    fiche_inscription = encrypt(models.ImageField(upload_to='tkt'))
+    certificat_medical = encrypt(models.ImageField(upload_to='tkt2'))
+    date_certificat = encrypt(models.DateTimeField(max_length=50, null=True))
+    autorisation_parentale = encrypt(models.ImageField(upload_to='tkt3'))
+    photo = encrypt(models.ImageField(upload_to='tkt4'))
     
     ficheInscr = Image.open("tkt")
     certifMédi = Image.open("tkt2")
