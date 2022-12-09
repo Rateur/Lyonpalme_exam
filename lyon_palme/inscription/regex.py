@@ -24,3 +24,10 @@ class Regex:
         verif_longueur2 = re.search(regex_longueur2, mdp)
         if verif_min and verif_maj and verif_chiffre and verif_special and verif_longueur or verif_min and verif_maj and verif_chiffre and verif_longueur2 :
             return True
+    
+    @staticmethod
+    def verif_tel(tel):
+        regex = "^0[1-68]([-. ]?[0-9]{2}){4}$"
+        verification = re.search(regex, tel)
+        if verification:
+            return True
