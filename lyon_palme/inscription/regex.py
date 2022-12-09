@@ -31,3 +31,10 @@ class Regex:
         verification = re.search(regex, tel)
         if verification:
             return True
+    
+    @staticmethod
+    def verif_cp(cp):
+        regex = "^(([0-95][1-95]|2A|2B)[0-9]{3})$|^[971-974]$"
+        verification = re.search(regex, cp)
+        if verification:
+            return True
