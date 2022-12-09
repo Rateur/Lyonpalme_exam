@@ -13,16 +13,16 @@ class Inscription(models.Model):
     adresse = encrypt(models.CharField(max_length=50, help_text='Rentrez votre adresse'))
     code_postal = encrypt(models.IntegerField(help_text='Rentrez votre code postal'))
     date_inscription = encrypt(models.DateTimeField(max_length=50))
-    fiche_inscription = encrypt(models.ImageField(upload_to='tkt'))
-    certificat_medical = encrypt(models.ImageField(upload_to='tkt2'))
+    fiche_inscription = encrypt(models.ImageField(null=True))#(upload_to='tkt'))
+    certificat_medical = encrypt(models.ImageField(null=True))#(upload_to='tkt2'))
     date_certificat = encrypt(models.DateTimeField(max_length=50, null=True))
-    autorisation_parentale = encrypt(models.ImageField(upload_to='tkt3'))
-    photo = encrypt(models.ImageField(upload_to='tkt4'))
+    autorisation_parentale = encrypt(models.ImageField(null=True))#(upload_to='tkt3'))
+    photo = encrypt(models.ImageField(null=True))#(upload_to='tkt4'))
     
-    ficheInscr = Image.open("tkt")
-    certifMédi = Image.open("tkt2")
-    autoParen = Image.open("tkt3")
-    photo = Image.open("tkt4")
+    #ficheInscr = Image.open("tkt")
+    #certifMédi = Image.open("tkt2")
+    #autoParen = Image.open("tkt3")
+    #photo = Image.open("tkt4")
 
     def __str__(self):
             return self.nom

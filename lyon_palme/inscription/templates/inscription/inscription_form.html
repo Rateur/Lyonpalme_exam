@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Test formulaire</title>
+    </head>
+    <body>
+        <form action="{% url 'inscription:inscription_form' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+        {{erreur_mail}}
+        <br/>
+    </body>
+</html>
