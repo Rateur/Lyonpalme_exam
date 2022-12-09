@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from .regex import Regex
+from .forms import Formulaire_inscription
 
 def inscription_form(request):
     if request.method == 'POST':
