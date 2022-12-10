@@ -8,8 +8,8 @@
         <form action="{% url 'inscription:inscription_form' %}" method="post">
             {% csrf_token %}
             {{ form }}
-            <input type="date" id="date_naissance">
-            <input type="date" id="date_certificat">
+            <input type="date" id="date_naissance" name="date_naissance">
+            <input type="date" id="date_certificat" name="date_certificat">
             <input type="submit" value="Submit">
         </form>
         {{erreur_mail}}

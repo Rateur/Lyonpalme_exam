@@ -1,14 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 
 from .regex import Regex
 from .forms import Formulaire_inscription
+from .models import Inscription
 
 def inscription_form(request):
     if request.method == 'POST':
         form = Formulaire_inscription(request.POST)
         if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):#REMPLACER LES NOMS ENTRE GUILLEMETS PAR LES NOMS DES CASES DU FORMULAIRE 
             reussi = "réussi"
+            adherent = Inscription()
+            adherent.nom = request.POST['nom']
+            adherent.prenom = request.POST['prenom']
+            adherent.date_naissance = request.POST['date_naissance']
+            adherent.mail = request.POST['mail']
+            adherent.telephone = request.POST['telephone']
+            adherent.adresse = request.POST['adresse']
+            adherent.date_inscription = timezone.now()
+            adherent.date_certificat = request.POST['date_certificat']
+            adherent.save()
             return render(request, 'inscription/inscription_form.html', {'form' : form, 'reussi' : reussi})
         else:
             erreur_mail = ""
