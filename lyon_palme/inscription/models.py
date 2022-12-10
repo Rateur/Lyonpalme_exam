@@ -5,13 +5,13 @@ from django_cryptography.fields import encrypt
 # Create your models here.
 
 class Inscription(models.Model):
-    nom = encrypt(models.CharField(max_length=50, help_text='Rentrez votre nom'))
-    prenom = encrypt(models.CharField(max_length=50, help_text='Rentrez votre prénom'))
-    date_naissance = encrypt(models.DateTimeField(max_length=50, help_text='Rentrez votre date de naissance'))
-    mail = encrypt(models.CharField(max_length=50, help_text='Rentrez votre adresse email'))
-    telephone = encrypt(models.CharField(max_length=20, help_text='Rentrez votre numéro de téléphone'))
-    adresse = encrypt(models.CharField(max_length=50, help_text='Rentrez votre adresse'))
-    code_postal = encrypt(models.IntegerField(help_text='Rentrez votre code postal'))
+    nom = encrypt(models.CharField(max_length=50))
+    prenom = encrypt(models.CharField(max_length=50))
+    date_naissance = encrypt(models.DateTimeField(max_length=50))
+    mail = encrypt(models.CharField(max_length=50))
+    telephone = encrypt(models.CharField(max_length=20))
+    adresse = encrypt(models.CharField(max_length=50))
+    code_postal = encrypt(models.CharField(max_length=5))
     date_inscription = encrypt(models.DateTimeField(max_length=50))
     fiche_inscription = encrypt(models.ImageField(null=True))#(upload_to='tkt'))
     certificat_medical = encrypt(models.ImageField(null=True))#(upload_to='tkt2'))

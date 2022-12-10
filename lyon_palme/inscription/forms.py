@@ -1,7 +1,6 @@
 from django import forms
 
-import inscription
+from .models import Inscription
 
 class Formulaire_inscription(forms.ModelForm):#FINIR FORMULAIRE ERREUR POUR L'INSTANT
-    model = Inscription
-    fields = '__all__'
+    #nom = 
