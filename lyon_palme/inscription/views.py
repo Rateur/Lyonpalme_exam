@@ -44,3 +44,6 @@ def inscription_form(request):
         form = Formulaire_inscription()
     
     return render(request, 'inscription/inscription_form.html', {'form' : form})
+
+def politique_confidentialite(request):
+    return render(request, 'inscription/politique_confidentialite.html')
