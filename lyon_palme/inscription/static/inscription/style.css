@@ -1,2 +1,24 @@
-label, #date_certificat, #date_naissance
-{font-family: Helvetica;}
+label
+{font-family: Helvetica;
+    font-weight: bold;
+    font-size: 25px;
+    display: block;
+    margin: 20px 33% 0;
+    color : rgb(80, 53, 130);}
+
+input
+{font-family: Helvetica;
+    width : 35%;
+    font-size: 25px;
+    display: block;
+    margin: 20px 33% 0;
+    color : black;}
+
+#date_certificat, #date_naissance
+{font-family: Helvetica;
+    font-weight: bold;
+    display: block;
+    color : rgb(80, 53, 130);}
+
+body
+{background-color: #9dcff2;}
