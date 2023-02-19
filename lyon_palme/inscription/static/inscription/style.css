@@ -22,3 +22,15 @@ input
 
 body
 {background-color: #9dcff2;}
+
+#politiquedeconfidentialite, #promos{
+    margin: 25px 33% 0;
+    width:1%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+#date_naissance, #date_certificat{
+    margin: 20px 33% 0;
+    width:20%;
+}
