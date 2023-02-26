@@ -65,7 +65,7 @@ def login_view(request):
     else:
         form = LoginForm()
 
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'inscription/login.html', {'form': form})
 
 @login_required
 def change_password(request):
@@ -86,4 +86,4 @@ def change_password(request):
         else:
             messages.error(request, 'Le mot de passe actuel est incorrect.')
 
-    return render(request, 'change_password.html')
+    return render(request, 'inscription/change_password.html')
