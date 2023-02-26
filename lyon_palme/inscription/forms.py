@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 
 from .models import Inscription
 
@@ -13,3 +14,6 @@ class Formulaire_inscription(forms.Form):
     #certificat = forms.ImageField(label='Certificat medical')
     #autorisation = forms.ImageField(label='Autorisation parentale')
     #photo = forms.ImageField(label='Photo')
+
+class LoginForm(AuthenticationForm):
+    password = forms.CharField(label='Mot de passe', widget=forms.PasswordInput)

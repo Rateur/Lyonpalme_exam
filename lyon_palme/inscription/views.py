@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .regex import Regex
-from .forms import Formulaire_inscription
+from .forms import Formulaire_inscription, LoginForm
 from .models import Inscription
 
 def inscription_form(request):
@@ -47,3 +49,41 @@ def inscription_form(request):
 
 def politique_confidentialite(request):
     return render(request, 'inscription/politique_confidentialite.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request=request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)  # connecter l'utilisateur
+                return redirect('home')
+            else:
+                form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+
+        user = authenticate(username=request.user.username, password=old_password)
+        if user is not None:
+            if new_password1 == new_password2:
+                user.set_password(new_password1)
+                user.save()
+                messages.success(request, 'Votre mot de passe a été modifié avec succès.')
+                return redirect('login')
+            else:
+                messages.error(request, 'Les deux nouveaux mots de passe ne correspondent pas.')
+        else:
+            messages.error(request, 'Le mot de passe actuel est incorrect.')
+
+    return render(request, 'change_password.html')
