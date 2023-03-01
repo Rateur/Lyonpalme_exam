@@ -12,7 +12,9 @@ input
     font-size: 25px;
     display: block;
     margin: 20px 33% 0;
-    color : black;}
+    color : black;
+    border-radius: 10px;
+}
 
 #date_certificat, #date_naissance
 {font-family: Helvetica;

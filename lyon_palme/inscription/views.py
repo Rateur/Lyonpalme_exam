@@ -87,3 +87,6 @@ def change_password(request):
             messages.error(request, 'Le mot de passe actuel est incorrect.')
 
     return render(request, 'inscription/change_password.html')
+
+def AccueilSecretaire(request):
+    return render(request, 'inscription/AccueilSecretaire.html')

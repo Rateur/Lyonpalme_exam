@@ -1,12 +1,11 @@
 {% load static %}
-{% extends "base.html" %}
 
 {% block content %}
   <h2>Connexion</h2>
   {% if form.errors %}
     <p>Votre nom d'utilisateur et/ou mot de passe sont incorrects.</p>
   {% endif %}
-  <form method="post">
+  <form method="post" action="{% url 'inscription:AccueilSecretaire' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Connexion</button>
