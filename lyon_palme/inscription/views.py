@@ -59,7 +59,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # connecter l'utilisateur
-                return redirect('home')
+                return render(request, 'inscription/AccueilSecretaire.html')
             else:
                 form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
     else:
@@ -88,5 +88,6 @@ def change_password(request):
 
     return render(request, 'inscription/change_password.html')
 
+@login_required
 def AccueilSecretaire(request):
     return render(request, 'inscription/AccueilSecretaire.html')

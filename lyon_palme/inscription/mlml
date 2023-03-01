@@ -1,0 +1,5 @@
+    path('AccueilSecretaire', views.AccueilSecretaire, name='AccueilSecretaire')
+{% url 'inscription:AccueilSecretaire' %}
+
+def AccueilSecretaire(request):
+    return render(request, 'inscription/AccueilSecretaire.html')
