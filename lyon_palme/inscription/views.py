@@ -80,7 +80,7 @@ def change_password(request):
                 user.set_password(new_password1)
                 user.save()
                 messages.success(request, 'Votre mot de passe a été modifié avec succès.')
-                return render(request, 'AccueilSecretaire.html')
+                return render(request, 'inscription/change_password.html')
             else:
                 messages.error(request, 'Les deux nouveaux mots de passe ne correspondent pas.')
         else:
