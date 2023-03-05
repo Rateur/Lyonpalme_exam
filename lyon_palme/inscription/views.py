@@ -77,10 +77,13 @@ def change_password(request):
         user = authenticate(username=request.user.username, password=old_password)
         if user is not None:
             if new_password1 == new_password2:
-                user.set_password(new_password1)
-                user.save()
-                messages.success(request, 'Votre mot de passe a été modifié avec succès.')
-                return render(request, 'inscription/change_password.html')
+                if old_password != new_password1:  # vérification ajoutée ici
+                    user.set_password(new_password1)
+                    user.save()
+                    messages.success(request, 'Votre mot de passe a été modifié avec succès.')
+                    return render(request, 'inscription/AccueilSecretaire.html')
+                else:
+                    messages.error(request, 'Le nouveau mot de passe est identique à l\'ancien.')
             else:
                 messages.error(request, 'Les deux nouveaux mots de passe ne correspondent pas.')
         else:
