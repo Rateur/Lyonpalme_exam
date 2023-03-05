@@ -6,6 +6,13 @@ label
     margin: 20px 33% 0;
     color : rgb(80, 53, 130);}
 
+h1
+{font-family: Helvetica;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: center;
+}
+
 input
 {font-family: Helvetica;
     width : 35%;
