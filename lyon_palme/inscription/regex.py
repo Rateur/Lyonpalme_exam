@@ -27,7 +27,7 @@ class Regex:
     
     @staticmethod
     def verif_tel(tel):
-        regex = "^0[1-68]([-. ]?[0-9]{2}){4}$"
+        regex = "^0[1-678]([-. ]?[0-9]{2}){4}$"
         verification = re.search(regex, tel)
         if verification:
             return True
