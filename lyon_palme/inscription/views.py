@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
-from .models import Inscription
+from .models import Inscription,Adherents
 
 def inscription_form(request):
     if request.method == 'POST':
@@ -20,6 +20,7 @@ def inscription_form(request):
             adherent.mail = request.POST['mail']
             adherent.telephone = request.POST['telephone']
             adherent.adresse = request.POST['adresse']
+            adherent.code_postal = request.POST['code_postal']
             adherent.date_inscription = timezone.now()
             adherent.date_certificat = request.POST['date_certificat']
             adherent.save()
@@ -93,4 +94,5 @@ def change_password(request):
 
 @login_required
 def AccueilSecretaire(request):
-    return render(request, 'inscription/AccueilSecretaire.html')
+    adherents = Inscription.objects.all()
+    return render(request, 'inscription/AccueilSecretaire.html', {'adherents' : adherents})
