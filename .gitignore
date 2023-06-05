@@ -2,7 +2,8 @@
 *.log
 *.pot
 *.pyc
-__pycache__
+./lyon_palme/inscription/__pycache__
+./lyon_palme/lyon_palme/__pycache__
 db.sqlite3
 media
 
