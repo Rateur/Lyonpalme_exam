@@ -26,22 +26,38 @@ class Migration(migrations.Migration):
             name='certificat_medical',
             field=django_cryptography.fields.encrypt(models.ImageField(null=True, upload_to='')),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='inscription',
             name='code_postal',
-            field=django_cryptography.fields.encrypt(models.IntegerField(help_text='Rentrez votre code postal')),
         ),
-        migrations.AlterField(
+        migrations.AddField(
+            model_name='inscription',
+            name='code_postal',
+            field=django_cryptography.fields.encrypt(models.IntegerField()),
+        ),
+        migrations.RemoveField(
+            model_name='inscription',
+            name='date_certificat',
+        ),
+        migrations.AddField(
             model_name='inscription',
             name='date_certificat',
             field=django_cryptography.fields.encrypt(models.DateTimeField(max_length=50, null=True)),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='inscription',
+            name='date_inscription',
+        ),
+        migrations.AddField(
             model_name='inscription',
             name='date_inscription',
             field=django_cryptography.fields.encrypt(models.DateTimeField(max_length=50)),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='inscription',
+            name='date_naissance',
+        ),
+        migrations.AddField(
             model_name='inscription',
             name='date_naissance',
             field=django_cryptography.fields.encrypt(models.DateTimeField(help_text='Rentrez votre date de naissance', max_length=50)),
