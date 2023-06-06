@@ -3,10 +3,11 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
-from .models import Inscription,Adherents
+from .models import Inscription
 
 def inscription_form(request):
     if request.method == 'POST':
@@ -16,13 +17,15 @@ def inscription_form(request):
             adherent = Inscription()
             adherent.nom = request.POST['nom']
             adherent.prenom = request.POST['prenom']
+            adherent.date_inscription = timezone.now()
             adherent.date_naissance = request.POST['date_naissance']
             adherent.mail = request.POST['mail']
             adherent.telephone = request.POST['telephone']
             adherent.adresse = request.POST['adresse']
             adherent.code_postal = request.POST['code_postal']
-            adherent.date_inscription = timezone.now()
             adherent.date_certificat = request.POST['date_certificat']
+            adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
+            adherent.affiche_annuaire = request.POST.get('annuaire',False)
             adherent.save()
             return render(request, 'inscription/inscription_form.html', {'form' : form, 'reussi' : reussi})
         else:
