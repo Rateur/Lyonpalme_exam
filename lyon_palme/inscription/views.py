@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import logout
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
@@ -57,9 +58,6 @@ def politique_confidentialite(request):
 
 def Accueil(request):
     return render(request, 'inscription/accueil.html')
-
-def archivage(request) :
-    return 
 
 def login_secretaire(request):
     if request.method == 'POST':
@@ -122,12 +120,18 @@ def change_password(request):
 
     return render(request, 'inscription/change_password.html')
 
-@login_required
+@login_required(login_url = 'inscription/login_secretaire.html')
 def AccueilSecretaire(request):
     adherents = Inscription.objects.all()
     return render(request, 'inscription/accueil_secretaire.html', {'adherents' : adherents})
 
-@login_required
+@login_required(login_url = 'inscription/login_nageur.html')
 def AccueilNageur(request):
     adherents = Inscription.objects.all()
     return render(request, 'inscription/accueil_nageur.html', {'adherents' : adherents})
+
+def logout_view(request):
+    if request.method == 'deconnexion':
+        logout(request)
+        messages.success(request, 'Vous êtes déconnecté.')
+        return render(request, 'inscription/accueil.html')
