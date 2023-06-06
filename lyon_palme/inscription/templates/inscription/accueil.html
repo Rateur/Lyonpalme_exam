@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'inscription/style.css' %}">
+</br>
+<h1>Accueil tout court</h1>
+<br/>
+<p>Je suis un.e<a href="{% url 'inscription:login_nageur' %}"> nageur.se</a> !</p>
+<p>Je suis un.e<a href="{% url 'inscription:login_secretaire' %}"> secrétaire</a> !</p>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <div {% if message.tags %} style="text-align: center; color: red; font-weight: bold;" class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+  </ul>
+{% endif %}

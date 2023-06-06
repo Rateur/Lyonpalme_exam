@@ -13,16 +13,33 @@ class Inscription(models.Model):
     adresse = encrypt(models.CharField(max_length=50))
     code_postal = encrypt(models.CharField(max_length=5))
     date_inscription = encrypt(models.DateTimeField(max_length=50))
-    fiche_inscription = encrypt(models.ImageField(null=True))#(upload_to='tkt'))
-    certificat_medical = encrypt(models.ImageField(null=True))#(upload_to='tkt2'))
+    fiche_inscription = encrypt(models.ImageField(null=True))
+    certificat_medical = encrypt(models.ImageField(null=True))
     date_certificat = encrypt(models.DateTimeField(max_length=50, null=True))
-    autorisation_parentale = encrypt(models.ImageField(null=True))#(upload_to='tkt3'))
-    photo = encrypt(models.ImageField(null=True))#(upload_to='tkt4'))
+    autorisation_parentale = encrypt(models.ImageField(null=True))
+    photo = encrypt(models.ImageField(null=True))
+    affiche_trombinoscope = encrypt(models.BooleanField(null=True))
+    affiche_annuaire = encrypt(models.BooleanField(null=True))
+
+class Archive(models.Model):
+    nom = encrypt(models.CharField(max_length=50))
+    prenom = encrypt(models.CharField(max_length=50))
+    date_naissance = encrypt(models.DateTimeField(max_length=50))
+    mail = encrypt(models.CharField(max_length=50))
+    telephone = encrypt(models.CharField(max_length=20))
+    adresse = encrypt(models.CharField(max_length=50))
+    code_postal = encrypt(models.CharField(max_length=5))
+    date_inscription = encrypt(models.DateTimeField(max_length=50))
+    fiche_inscription = encrypt(models.ImageField(null=True))
+    certificat_medical = encrypt(models.ImageField(null=True))
+    date_certificat = encrypt(models.DateTimeField(max_length=50, null=True))
+    autorisation_parentale = encrypt(models.ImageField(null=True))
+    photo = encrypt(models.ImageField(null=True))
+    affiche_trombinoscope = encrypt(models.BooleanField(null=True))
+    affiche_annuaire = encrypt(models.BooleanField(null=True))
+    date_inactivite = encrypt(models.DateTimeField(max_length=50))
     
-    #ficheInscr = Image.open("tkt")
-    #certifMédi = Image.open("tkt2")
-    #autoParen = Image.open("tkt3")
-    #photo = Image.open("tkt4")
+
 
     def __str__(self):
             return self.nom
