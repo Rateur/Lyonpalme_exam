@@ -103,4 +103,5 @@ def AccueilSecretaire(request):
 
 @login_required
 def nageur(request, adherent_id):
-    return render(request, 'inscription/nageur.html')
+    nageur = Inscription.objects.get(pk=adherent_id)
+    return render(request, 'inscription/nageur.html', {'nageur' : nageur})

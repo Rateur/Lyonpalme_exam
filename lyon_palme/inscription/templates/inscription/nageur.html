@@ -2,4 +2,30 @@
 
 <link rel="stylesheet" href="{% static 'inscription/style.css' %}">
 </br>
-<h1>Page nageur</h1>
+<h1>Page {{nageur.prenom}} {{nageur.nom}}</h1>
+<br/>
+<br/>
+<br/>
+
+{% if nageur %}
+    {{nageur.nom}},
+    {{nageur.prenom}},
+    {{nageur.date_naissance}},
+    {{nageur.mail}},
+    {{nageur.telephone}},
+    {{nageur.adresse}},
+    {{nageur.code_postal}},
+    {{nageur.date_certificat}},
+    {% if nageur.affiche_trombinoscope == True %}
+    Souhaite apparaître sur le trombinoscope,
+    {% else %}
+    Ne souhaite pas apparaître sur le trombinoscope,
+    {% endif %}
+    {% if nageur.affiche_annuaire == True %}
+    Souhaite apparaître sur l'annuaire,
+    {% else %}
+    Ne souhaite pas apparaître sur l'annuaire,
+    {% endif %}
+    <br/>
+    <br/>
+{% endif %}
