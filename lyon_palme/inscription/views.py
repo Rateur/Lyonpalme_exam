@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
@@ -63,7 +64,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # connecter l'utilisateur
-                return render(request, 'inscription/AccueilSecretaire.html')
+                return HttpResponseRedirect(reverse("inscription:AccueilSecretaire"))
             else:
                 form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
     else:
@@ -99,3 +100,7 @@ def change_password(request):
 def AccueilSecretaire(request):
     adherents = Inscription.objects.all()
     return render(request, 'inscription/AccueilSecretaire.html', {'adherents' : adherents})
+
+@login_required
+def nageur(request, adherent_id):
+    return render(request, 'inscription/nageur.html')
