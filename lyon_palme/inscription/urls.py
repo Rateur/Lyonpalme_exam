@@ -8,7 +8,8 @@ urlpatterns = [
     path('login', views.login_view, name='login'),
     path('change_password', views.change_password, name='change_password'),
     path('AccueilSecretaire', views.AccueilSecretaire, name='AccueilSecretaire'),
-    path('AccueilSecretaire/<int:adherent_id>/', views.nageur, name="nageur")
+    path('AccueilSecretaire/<int:adherent_id>/', views.nageur, name="nageur"),
+    path('AccueilSecretaire/<int:adherent_id>/modification_nageur',views.modification_nageur, name="modification_nageur")
 ]
 
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

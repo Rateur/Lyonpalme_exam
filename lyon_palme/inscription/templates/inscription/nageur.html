@@ -8,24 +8,25 @@
 <br/>
 
 {% if nageur %}
-    {{nageur.nom}},
-    {{nageur.prenom}},
-    {{nageur.date_naissance}},
-    {{nageur.mail}},
-    {{nageur.telephone}},
-    {{nageur.adresse}},
-    {{nageur.code_postal}},
-    {{nageur.date_certificat}},
+    {{nageur.nom}},<br/><br/>
+    {{nageur.prenom}},<br/><br/>
+    {{nageur.date_naissance}},<br/><br/>
+    {{nageur.mail}},<br/><br/>
+    {{nageur.telephone}},<br/><br/>
+    {{nageur.adresse}},<br/><br/>
+    {{nageur.code_postal}},<br/><br/>
+    {{nageur.date_certificat}},<br/><br/>
     {% if nageur.affiche_trombinoscope == True %}
-    Souhaite apparaître sur le trombinoscope,
+    Souhaite apparaître sur le trombinoscope,<br/><br/>
     {% else %}
-    Ne souhaite pas apparaître sur le trombinoscope,
+    Ne souhaite pas apparaître sur le trombinoscope,<br/><br/>
     {% endif %}
     {% if nageur.affiche_annuaire == True %}
-    Souhaite apparaître sur l'annuaire,
+    Souhaite apparaître sur l'annuaire,<br/><br/>
     {% else %}
-    Ne souhaite pas apparaître sur l'annuaire,
+    Ne souhaite pas apparaître sur l'annuaire<br/><br/>
     {% endif %}
     <br/>
     <br/>
+    <a href="{% url 'inscription:modification_nageur' nageur.id %}">Modifier profil</a>
 {% endif %}

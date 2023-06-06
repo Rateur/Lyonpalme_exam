@@ -105,3 +105,8 @@ def AccueilSecretaire(request):
 def nageur(request, adherent_id):
     nageur = Inscription.objects.get(pk=adherent_id)
     return render(request, 'inscription/nageur.html', {'nageur' : nageur})
+
+@login_required
+def modification_nageur(request, adherent_id):
+    nageur = Inscription.objects.get(pk=adherent_id)
+    return render(request, 'inscription/modification_form.html', {'nageur' : nageur})
