@@ -77,14 +77,11 @@ WSGI_APPLICATION = 'lyon_palme.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bddlyon',
-        'USER': 'secretaire',
-        'PASSWORD': 'eurH74k&x@',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
