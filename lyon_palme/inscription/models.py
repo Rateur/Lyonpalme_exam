@@ -1,10 +1,11 @@
 from django.db import models
-from PIL import Image
 from django_cryptography.fields import encrypt
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Inscription(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nom = encrypt(models.CharField(max_length=50))
     prenom = encrypt(models.CharField(max_length=50))
     date_naissance = encrypt(models.DateTimeField(max_length=50))

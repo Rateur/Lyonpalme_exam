@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
 from django.utils import timezone
@@ -30,6 +31,14 @@ def inscription_form(request):
                 adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
                 adherent.affiche_annuaire = request.POST.get('annuaire',False)
                 adherent.save()
+
+                login = request.POST['prenom'][0]+request.post['nom']
+                mdp = request.POST['date_naissance']
+
+                utilisateur = User.objects.create_user()
+                utilisateur.username = login
+                utilisateur.password = mdp
+                utilisateur.save()
                 return render(request, 'inscription/inscription_form.html', {'form' : form, 'reussi' : reussi})
             else:
                 erreur_mail = ""
