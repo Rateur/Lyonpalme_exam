@@ -10,15 +10,56 @@
         <br/>
         <br/>
         <div class="formbox-title_WAM32"><p style="background: #9dcff2;text-align: center;" data-mce-style="text-align: center;"><span style="color: rgb(80, 53, 130); font-size: 48px;" data-mce-style="color: #503582; font-size: 48px;"><strong><span style="font-family: Arial, Helvetica, sans-serif;" data-mce-style="font-family: Arial, Helvetica, sans-serif;">Formulaire de modification</span></strong></span></p><p style="text-align: center;" data-mce-style="text-align: center;"><span style="font-size: 16px;" data-mce-style="font-size: 16px;"><em><span style="color: rgb(80, 53, 130);" data-mce-style="color: #503582;"><strong><span style="font-family: Arial, Helvetica, sans-serif;" data-mce-style="font-family: Arial, Helvetica, sans-serif;">Complétez chacun des champs ci-dessous</span></strong></span></em></span></p></div>
-        <div class="formbox-field_WAM32" style="text-align: center; padding: 0px 40px;"><img src="https://images.benchmarkemail.com/client1514081/image13204250.png"  style ="max-width: 50%;"></div>
+        <div class="formbox-field_WAM32" style="text-align: center; padding: 0px 40px;"><a href='../../accueil_secretaire'><img src="https://images.benchmarkemail.com/client1514081/image13204250.png"  style ="max-width: 50%;"></a></div>
         <div class="formbox-editor_WAM32" style="background: #9dcff2; height : auto;"><div id="formbox_screen_subscribe_WAM32" style="display:block;" name="frmLB_WAM32">
         <br/>
         <br/>
     </head>
     <body>
-        <form action="{% url 'inscription:inscription_form' %}" method="post">
+        Informations nageur actuelles : <br/><br/>
+        {% if nageur %}
+            Nom : {{nageur.nom}},<br/><br/>
+            Prénom : {{nageur.prenom}},<br/><br/>
+            Mail : {{nageur.mail}},<br/><br/>
+            Téléphone : {{nageur.telephone}},<br/><br/>
+            Adresse : {{nageur.adresse}},<br/><br/>
+            Code postal : {{nageur.code_postal}},<br/><br/>
+            Date naissance : {{nageur.date_naissance}},<br/><br/>
+            Date certificat : {{nageur.date_certificat}},<br/><br/>
+            {% if nageur.affiche_trombinoscope == True %}
+                Souhaite apparaître sur le trombinoscope,<br/><br/>
+            {% else %}
+                Ne souhaite pas apparaître sur le trombinoscope,<br/><br/>
+            {% endif %}
+            {% if nageur.affiche_annuaire == True %}
+                Souhaite apparaître sur l'annuaire,<br/><br/>
+            {% else %}
+                Ne souhaite pas apparaître sur l'annuaire<br/><br/>
+            {% endif %}
+            <br/>
+            <br/>
+        {% endif %}
+        <form action="" method="post">
             {% csrf_token %}
-            
+            {{ form }}
+            <label>Date naissance:</label> 
+            <input type="date" id="date_naissance" name="date_naissance" required="">
+            <label>Date certificat:</label> 
+            <input type="date" id="date_certificat" name="date_certificat" required="">
+            <br/>
+            <div>
+                <input type="checkbox" id="trombinoscope" name="trombinoscope" value=True style="margin: 20px 33% 0;width:1%">
+
+                <label for="trombinoscope" style="font-size:15px;margin: -15px 35% 0;">Souhaite apparaître dans le trombinoscope.</label>
+            </div>
+    
+            <div>
+                <input type="checkbox" id="annuaire" name="annuaire" value=True style="margin: 20px 33% 0;width:1%">
+
+                <label for="annuaire" style="font-size:15px;margin: -15px 35% 0;">Souhaite apparaître dans l'annuaire.</label>
+            </div><br/>
+            <br/>
+            <center><input type="submit" value="S'inscrire" style="text-align:center;word-break: break-all; box-sizing: border-box; text-align:center; display: inline-block;padding-left: 30px; padding-right: 30px;padding-top: 20px; padding-bottom: 20px;background-color:rgb(80, 53, 130); border: rgba(0, 0, 0, 0) solid 0px; border-radius: 2px;font-family :Helvetica, Arial, sans-serif; font-size: 14px;color: rgb(255, 255, 255); line-height: 1; letter-spacing:1pxpx;"></center>
         </form>
     </body>
 </html>

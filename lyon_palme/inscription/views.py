@@ -132,8 +132,46 @@ def nageur(request, adherent_id):
 
 @login_required
 def modification_nageur(request, adherent_id):
-    nageur = Inscription.objects.get(pk=adherent_id)
-    return render(request, 'inscription/modification_form.html', {'nageur' : nageur})
+    if request.method == 'POST':
+        form = Formulaire_inscription(request.POST)
+        if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
+            reussi = "réussi"
+            adherent = Inscription.objects.get(pk=adherent_id)
+            adherent.nom = request.POST['nom']
+            adherent.prenom = request.POST['prenom']
+            adherent.date_inscription = timezone.now()
+            adherent.date_naissance = request.POST['date_naissance']
+            adherent.mail = request.POST['mail']
+            adherent.telephone = request.POST['telephone']
+            adherent.adresse = request.POST['adresse']
+            adherent.code_postal = request.POST['code_postal']
+            adherent.date_certificat = request.POST['date_certificat']
+            adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
+            adherent.affiche_annuaire = request.POST.get('annuaire',False)
+            adherent.save()
+            return render(request, 'inscription/modification_form.html', {'form' : form, 'reussi' : reussi, 'nageur' : adherent})
+        else:
+            erreur_mail = ""
+            erreur_tel = ""
+            erreur_cp = ""
+
+            if not Regex.verif_mail(form.cleaned_data['mail']) :
+                erreur_mail = "Mauvais format d'adresse mail"
+            if not Regex.verif_tel(form.cleaned_data['telephone']):
+                erreur_tel = "Mauvais format de numéro de téléphone : les chiffres doivent être séparés par des points, des tirets ou des espaces"
+            if not Regex.verif_cp(form.cleaned_data['code_postal']):
+                erreur_cp = "Mauvais format de code postal"
+            context = {
+                'form' : form,
+                'erreur_mail' : erreur_mail,
+                'erreur_tel' : erreur_tel,
+                'erreur_cp' : erreur_cp
+            }
+            return render(request, 'inscription/modification_form.html', context)
+    else:
+        nageur = Inscription.objects.get(pk=adherent_id)
+        form = Formulaire_inscription()
+    return render(request, 'inscription/modification_form.html', {'nageur' : nageur, 'form' : form})
 
 @login_required(login_url = 'inscription/login_nageur.html')
 def accueil_nageur(request):
