@@ -18,7 +18,15 @@ def inscription_form(request):
             form = Formulaire_inscription(request.POST)
             if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
                 reussi = "réussi"
+                
+                login = request.POST['prenom'][0]+request.POST['nom']
+                mdp = request.POST['date_naissance']
+
+                utilisateur = User.objects.create_user(login, "", password = mdp)
+                utilisateur.save()
+                
                 adherent = Inscription()
+                adherent.user = utilisateur
                 adherent.nom = request.POST['nom']
                 adherent.prenom = request.POST['prenom']
                 adherent.date_inscription = timezone.now()
@@ -32,13 +40,6 @@ def inscription_form(request):
                 adherent.affiche_annuaire = request.POST.get('annuaire',False)
                 adherent.save()
 
-                login = request.POST['prenom'][0]+request.post['nom']
-                mdp = request.POST['date_naissance']
-
-                utilisateur = User.objects.create_user()
-                utilisateur.username = login
-                utilisateur.password = mdp
-                utilisateur.save()
                 return render(request, 'inscription/inscription_form.html', {'form' : form, 'reussi' : reussi})
             else:
                 erreur_mail = ""
