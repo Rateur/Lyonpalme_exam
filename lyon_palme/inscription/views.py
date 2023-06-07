@@ -231,6 +231,6 @@ def trombinoscope(request):
             'image_list': image_list,
         }
 
-        return render(request, 'trombinoscope.html', context)
+        return render(request, 'inscription/trombinoscope.html', context)
     else:
         return HttpResponseRedirect(reverse("inscription:login_nageur"))
