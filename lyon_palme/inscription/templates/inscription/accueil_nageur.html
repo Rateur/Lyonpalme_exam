@@ -8,11 +8,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only"></span></a>
+      <a class="nav-item nav-link active" href="{% url 'inscription:Accueil' %}">Home <span class="sr-only"></span></a>
       <a class="nav-item nav-link" href="{% url 'inscription:login_nageur' %}">Nageur</a>
       <a class="nav-item nav-link" href="{% url 'inscription:login_secretaire' %}">Secrétaire</a>
       <a class="nav-item nav-link" href="{% url 'inscription:logout_view' %}">Deconnexion</a>
-
     </div>
   </div>
 </nav>
