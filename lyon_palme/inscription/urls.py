@@ -13,6 +13,7 @@ urlpatterns = [
     path('accueil_secretaire/<int:adherent_id>/modification_nageur',views.modification_nageur, name="modification_nageur"),
     path('accueil_secretaire/<int:adherent_id>/archiver_nageur', views.archiver_nageur, name="archiver_nageur"),
     path('accueil_nageur', views.accueil_nageur, name='accueil_nageur'),
+    path('trombinoscope/', views.trombinoscope, name='trombinoscope'),
     path('', views.Accueil, name="Accueil")
 ]
 

@@ -4,12 +4,17 @@
 </br>
 <h1>Accueil Nageur</h1>
 <br/>
-<p>Salut à toi jeune nageur sauvage.</p>
+<p>Salut à toi jeune nageur.
+  <br/>
+Dans ce site tu pourras voir le tranbiscoscope 
+</p>
 <button class="favorite styled"
         type="button"
         name="deconnexion">
-    Add to favorites
+    deconnexion
 </button>
+<br/>
+<a href="{% url 'inscription:trombinoscope'  %}">Voir le trombinoscope</a>
 {% if messages %}
   <ul class="messages">
     {% for message in messages %}

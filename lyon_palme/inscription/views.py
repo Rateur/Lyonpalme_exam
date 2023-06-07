@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import logout
+from django.shortcuts import render
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
@@ -202,3 +203,13 @@ def logout_view(request):
         logout(request)
         messages.success(request, 'Vous êtes déconnecté.')
         return render(request, 'inscription/accueil.html')
+
+
+def trombinoscope(request):
+    image_list = ['Beatrice.jpeg', 'emma.jpg', 'eva.jpg', 'milan.jpg', 'Tom.jpg']  # Liste des noms d'images
+
+    context = {
+        'image_list': image_list,
+    }
+
+    return render(request, 'trombinoscope.html', context)
