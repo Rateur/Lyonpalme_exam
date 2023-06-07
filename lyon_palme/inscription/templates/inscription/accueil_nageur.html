@@ -8,11 +8,11 @@
   <br/>
 Dans ce site tu pourras voir le tranbiscoscope 
 </p>
-<button class="favorite styled"
-        type="button"
-        name="deconnexion">
-    deconnexion
-</button>
+<a href="{% url 'inscription:logout_view' %}">
+  <button class="favorite styled" type="button">
+      deconnexion
+  </button>
+</a>
 <br/>
 <a href="{% url 'inscription:trombinoscope'  %}">Voir le trombinoscope</a>
 {% if messages %}

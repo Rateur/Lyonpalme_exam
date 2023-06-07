@@ -218,10 +218,9 @@ def accueil_nageur(request):
         return HttpResponseRedirect(reverse("inscription:login_nageur"))
 
 def logout_view(request):
-    if request.method == 'deconnexion':
-        logout(request)
-        messages.success(request, 'Vous êtes déconnecté.')
-        return render(request, 'inscription/accueil.html')
+    logout(request)
+    messages.success(request, 'Vous êtes déconnecté.')
+    return HttpResponseRedirect(reverse("inscription:Accueil"))
 
 
 def trombinoscope(request):
