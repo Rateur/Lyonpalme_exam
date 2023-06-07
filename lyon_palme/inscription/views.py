@@ -9,7 +9,7 @@ from django.contrib.auth import logout
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
-from .models import Inscription
+from .models import Inscription,Archive
 
 def inscription_form(request):
     if request.method == 'POST':
@@ -172,6 +172,25 @@ def modification_nageur(request, adherent_id):
         nageur = Inscription.objects.get(pk=adherent_id)
         form = Formulaire_inscription()
     return render(request, 'inscription/modification_form.html', {'nageur' : nageur, 'form' : form})
+
+@login_required
+def archiver_nageur(request, adherent_id):
+    inscription = Inscription.objects.get(pk=adherent_id)
+    archive = Archive()
+    archive.nom = inscription.nom
+    archive.prenom = inscription.prenom
+    archive.date_naissance = inscription.date_naissance
+    archive.mail = inscription.mail
+    archive.telephone = inscription.telephone
+    archive.adresse = inscription.adresse
+    archive.code_postal = inscription.code_postal
+    archive.date_inscription = inscription.date_inscription
+    archive.date_desinscription = timezone.now() 
+    archive.save()
+    
+    inscription.delete()
+    
+    return HttpResponseRedirect(reverse("inscription:accueil_secretaire"))
 
 @login_required(login_url = 'inscription/login_nageur.html')
 def accueil_nageur(request):
