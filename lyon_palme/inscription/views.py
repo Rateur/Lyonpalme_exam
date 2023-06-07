@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import logout
 
 from .regex import Regex
 from .forms import Formulaire_inscription, LoginForm
@@ -55,7 +56,10 @@ def inscription_form(request):
 def politique_confidentialite(request):
     return render(request, 'inscription/politique_confidentialite.html')
 
-def login_view(request):
+def Accueil(request):
+    return render(request, 'inscription/accueil.html')
+
+def login_secretaire(request):
     if request.method == 'POST':
         form = LoginForm(request=request, data=request.POST)
         if form.is_valid():
@@ -64,13 +68,30 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # connecter l'utilisateur
-                return HttpResponseRedirect(reverse("inscription:AccueilSecretaire"))
+                return HttpResponseRedirect(reverse("inscription:accueil_secretaire"))
             else:
                 form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
     else:
         form = LoginForm()
 
-    return render(request, 'inscription/login.html', {'form': form})
+    return render(request, 'inscription/login_secretaire.html', {'form': form})
+
+def login_nageur(request):
+    if request.method == 'POST':
+        form = LoginForm(request=request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)  # connecter l'utilisateur
+                return HttpResponseRedirect(reverse("inscription:accueil_nageur"))
+            else:
+                form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
+    else:
+        form = LoginForm()
+
+    return render(request, 'inscription/login_nageur.html', {'form': form})
 
 @login_required
 def change_password(request):
@@ -83,10 +104,13 @@ def change_password(request):
         if user is not None:
             if new_password1 == new_password2:
                 if old_password != new_password1:  # vérification ajoutée ici
-                    user.set_password(new_password1)
-                    user.save()
-                    messages.success(request, 'Votre mot de passe a été modifié avec succès.')
-                    return render(request, 'inscription/AccueilSecretaire.html')
+                    if not Regex.verif_mdp(new_password1) :
+                        messages.error(request,  "Mauvais format de mot de passe.")
+                    else :
+                        user.set_password(new_password1)
+                        user.save()
+                        messages.success(request, 'Votre mot de passe a été modifié avec succès.')
+                        return HttpResponseRedirect(reverse("inscription:accueil_secretaire"))
                 else:
                     messages.error(request, 'Le nouveau mot de passe est identique à l\'ancien.')
             else:
@@ -96,10 +120,10 @@ def change_password(request):
 
     return render(request, 'inscription/change_password.html')
 
-@login_required
-def AccueilSecretaire(request):
+@login_required(login_url = 'inscription/login_secretaire.html')
+def accueil_secretaire(request):
     adherents = Inscription.objects.all()
-    return render(request, 'inscription/AccueilSecretaire.html', {'adherents' : adherents})
+    return render(request, 'inscription/accueil_secretaire.html', {'adherents' : adherents})
 
 @login_required
 def nageur(request, adherent_id):
@@ -110,3 +134,14 @@ def nageur(request, adherent_id):
 def modification_nageur(request, adherent_id):
     nageur = Inscription.objects.get(pk=adherent_id)
     return render(request, 'inscription/modification_form.html', {'nageur' : nageur})
+
+@login_required(login_url = 'inscription/login_nageur.html')
+def accueil_nageur(request):
+    adherents = Inscription.objects.all()
+    return render(request, 'inscription/accueil_nageur.html', {'adherents' : adherents})
+
+def logout_view(request):
+    if request.method == 'deconnexion':
+        logout(request)
+        messages.success(request, 'Vous êtes déconnecté.')
+        return render(request, 'inscription/accueil.html')
