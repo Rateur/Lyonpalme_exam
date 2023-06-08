@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils import timezone
 from django.http import HttpResponseRedirect
@@ -21,8 +21,9 @@ def inscription_form(request):
                 
                 login = request.POST['prenom'][0]+request.POST['nom']
                 mdp = request.POST['date_naissance']
+                mail = request.POST['mail']
 
-                utilisateur = User.objects.create_user(login, "", password = mdp)
+                utilisateur = User.objects.create_user(login, mail, mdp)
                 utilisateur.save()
                 
                 adherent = Inscription()

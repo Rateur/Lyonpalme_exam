@@ -27,8 +27,9 @@
   <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
-  </br>
-</br>
+    </br>
+    </br> 
     <center><button type="submit" style="text-align:center;word-break: break-all; box-sizing: border-box; text-align:center; display: inline-block;padding-left: 30px; padding-right: 30px;padding-top: 20px; padding-bottom: 20px;background-color:rgb(80, 53, 130); border: rgba(0, 0, 0, 0) solid 0px; border-radius: 2px;font-family :Helvetica, Arial, sans-serif; font-size: 14px;color: rgb(255, 255, 255); line-height: 1; letter-spacing:1pxpx;">Connexion</button></center>
   </form>
+  <a href="../accounts/password_reset">Mot de passe oublié ?</a>
 {% endblock %}
