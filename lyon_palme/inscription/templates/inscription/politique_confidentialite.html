@@ -1,19 +1,23 @@
+{% load static %}
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-purple"> <!-- Ajout de la classe "bg-purple" -->
-  <a class="navbar-brand" href="">Lyon Palme</a>
+<nav style="margin-left:2%" class="navbar navbar-expand-lg navbar-light bg-purple"> <!-- Ajout de la classe "bg-purple" -->
+  <a class="navbar-brand" style="font-family:Helvetica;font-weight:bold;color:rgb(80, 53, 130);" href="{% url 'inscription:Accueil' %}">Lyon Palme</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{% url 'inscription:Accueil' %}">Home <span class="sr-only"></span></a>
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_nageur' %}">Nageur</a>
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_secretaire' %}">Secrétaire</a>
     </div>
   </div>
 </nav>
-Politique de confidentialité<br/>
+
+<link rel="stylesheet" href="{% static 'inscription/style.css' %}">
+
+<p style="margin:2%;text-align:justify">Politique de confidentialité<br/>
 Le site web https://www.lyon-palme.com/ est détenu par lyon-palme, qui est un contrôleur de données de vos données personnelles.<br/>
 <br/>
 Nous avons adopté cette politique de confidentialité, qui détermine la manière dont nous traitons les informations collectées par https://www.lyon-palme.com/, qui fournit également les raisons pour lesquelles nous devons collecter certaines données personnelles vous concernant. Par conséquent, vous devez lire cette politique de confidentialité avant d'utiliser le site web de https://www.lyon-palme.com/.<br/>
@@ -53,4 +57,4 @@ Divulgation légale :<br/>
 Nous divulguerons toute information que nous collectons, utilisons ou recevons si la loi l'exige ou l'autorise, par exemple pour nous conformer à une citation à comparaître ou à une procédure judiciaire similaire, et lorsque nous pensons de bonne foi que la divulgation est nécessaire pour protéger nos droits, votre sécurité ou celle d'autrui, enquêter sur une fraude ou répondre à une demande du gouvernement.<br/>
 <br/>
 Informations de contact :<br/>
-Si vous souhaitez nous contacter pour comprendre davantage la présente politique ou si vous souhaitez nous contacter concernant toute question relative aux droits individuels et à vos informations personnelles, vous pouvez envoyer un courriel à contact@lyon-palme.com.<br/>
+Si vous souhaitez nous contacter pour comprendre davantage la présente politique ou si vous souhaitez nous contacter concernant toute question relative aux droits individuels et à vos informations personnelles, vous pouvez envoyer un courriel à contact@lyon-palme.com.<br/></p>

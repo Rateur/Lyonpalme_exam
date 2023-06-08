@@ -1,14 +1,13 @@
 {% load static %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-purple"> <!-- Ajout de la classe "bg-purple" -->
-  <a class="navbar-brand" href="">Lyon Palme</a>
+<nav style="margin-left:2%" class="navbar navbar-expand-lg navbar-light bg-purple"> <!-- Ajout de la classe "bg-purple" -->
+  <a class="navbar-brand" style="font-family:Helvetica;font-weight:bold;color:rgb(80, 53, 130);" href="{% url 'inscription:Accueil' %}">Lyon Palme</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{% url 'inscription:Accueil' %}">Home <span class="sr-only"></span></a>
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_nageur' %}">Nageur</a>
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_secretaire' %}">Secrétaire</a>
 
@@ -18,10 +17,10 @@
 
 <link rel="stylesheet" href="{% static 'inscription/style.css' %}">
 </br>
-<h1>LYONPALME</h1>
+<h1 style="color:rgb(80, 53, 130);">Lyon Palme</h1>
 <br/>
 
-<p>Lyon Palme - Votre compagnon pour la gestion des nageurs
+<p style="margin:5%;text-align:justify">Lyon Palme - Votre compagnon pour la gestion des nageurs
 
   Lyon Palme est une entreprise basée à Lyon dédiée à la gestion des informations des nageurs. Notre objectif est de faciliter la vie des nageurs en leur offrant une plateforme pratique et conviviale pour consulter leurs informations personnelles et interagir avec leur communauté de nage.<br>
   <br>
@@ -42,11 +41,8 @@
     {% endfor %}
   </ul>
 {% endif %}
-<br/>
-<br/>
-<br/>
 <footer>
   <div class="privacy-policy">
-    <a href="{% url 'inscription:politique_confidentialite' %}">Politique de confidentialité</a>
+    <p style="margin:5%;text-align:justify">Pour savoir comment sont traîtées vos données personnelles, veuillez consulter notre <a href="{% url 'inscription:politique_confidentialite' %}">politique de confidentialité</a>.</p>
   </div>
 </footer>
