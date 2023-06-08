@@ -17,7 +17,7 @@ def inscription_form(request):
         if request.method == 'POST':
             form = Formulaire_inscription(request.POST)
             if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
-                reussi = "réussi"
+                reussi = "Utilisateur ajouté avec succès"
                 
                 login = request.POST['prenom'][0]+request.POST['nom']
                 mdp = request.POST['date_naissance']
@@ -163,7 +163,7 @@ def modification_nageur(request, adherent_id):
         if request.method == 'POST':
             form = Formulaire_inscription(request.POST)
             if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
-                reussi = "réussi"
+                reussi = "Utilisateur modifié avec succès"
                 adherent = Inscription.objects.get(pk=adherent_id)
                 adherent.nom = request.POST['nom']
                 adherent.prenom = request.POST['prenom']
@@ -241,7 +241,7 @@ def modification_nageur_nageur(request):
         if request.method == 'POST':
             form = Formulaire_inscription(request.POST)
             if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
-                reussi = "réussi"
+                reussi = "Informations modifiées avec succès"
                 adherent = Inscription.objects.get(pk=nageur.id)
                 adherent.nom = request.POST['nom']
                 adherent.prenom = request.POST['prenom']
