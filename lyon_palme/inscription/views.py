@@ -221,7 +221,7 @@ def archiver_nageur(request, adherent_id):
 
 
 def accueil_nageur(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not(request.user.is_superuser):
         adherents = Inscription.objects.all()
         return render(request, 'inscription/accueil_nageur.html', {'adherents' : adherents})
     else:
@@ -234,7 +234,7 @@ def logout_view(request):
 
 
 def trombinoscope(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not(request.user.is_superuser):
         image_list = ['Beatrice.jpeg', 'emma.jpg', 'eva.jpg', 'milan.jpg', 'Tom.jpg']  # Liste des noms d'images
 
         context = {
