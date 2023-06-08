@@ -19,10 +19,32 @@
 </br>
 <h1>Accueil Nageur</h1>
 <br/>
-<p>Salut à toi jeune nageur.
-  <br/>
-Dans ce site tu pourras voir le tranbiscoscope 
-</p>
+<br/>
+{% if nageur %}
+    {{nageur.nom}},<br/><br/>
+    {{nageur.prenom}},<br/><br/>
+    {{nageur.date_naissance}},<br/><br/>
+    {{nageur.mail}},<br/><br/>
+    {{nageur.telephone}},<br/><br/>
+    {{nageur.adresse}},<br/><br/>
+    {{nageur.code_postal}},<br/><br/>
+    {{nageur.date_certificat}},<br/><br/>
+    {% if nageur.affiche_trombinoscope == True %}
+    Souhaite apparaître sur le trombinoscope,<br/><br/>
+    {% else %}
+    Ne souhaite pas apparaître sur le trombinoscope,<br/><br/>
+    {% endif %}
+    {% if nageur.affiche_annuaire == True %}
+    Souhaite apparaître sur l'annuaire<br/><br/>
+    {% else %}
+    Ne souhaite pas apparaître sur l'annuaire<br/><br/>
+    {% endif %}
+    <br/>
+    <br/>
+{% endif %}
+<a href="{% url 'inscription:modification_nageur_nageur'%}">Modifier mes données personnelles</a>
+<br/>
+<a href="{% url 'inscription:change_password'%}">Modifier mon mot de passe</a>
 <br/>
 <a href="{% url 'inscription:trombinoscope'  %}">Voir le trombinoscope</a>
 {% if messages %}

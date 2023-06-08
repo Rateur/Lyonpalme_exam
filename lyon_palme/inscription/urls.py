@@ -14,6 +14,7 @@ urlpatterns = [
     path('accueil_secretaire/<int:adherent_id>/archiver_nageur', views.archiver_nageur, name="archiver_nageur"),
     path('accueil_nageur', views.accueil_nageur, name='accueil_nageur'),
     path('accueil_nageur/trombinoscope/', views.trombinoscope, name='trombinoscope'),
+    path('accueil_nageur/modification_nageur/', views.modification_nageur_nageur, name='modification_nageur_nageur'),
     path('logout_view', views.logout_view, name='logout_view'),
     path('', views.Accueil, name="Accueil")
 ]

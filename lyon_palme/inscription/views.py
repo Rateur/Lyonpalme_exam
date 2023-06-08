@@ -108,7 +108,7 @@ def login_nageur(request):
 
 @login_required
 def change_password(request):
-    if request.user.is_superuser:
+    if request.user.is_authenticated:
         if request.method == 'POST':
             old_password = request.POST.get('old_password')
             new_password1 = request.POST.get('new_password1')
@@ -124,7 +124,10 @@ def change_password(request):
                             user.set_password(new_password1)
                             user.save()
                             messages.success(request, 'Votre mot de passe a été modifié avec succès.')
-                            return HttpResponseRedirect(reverse("inscription:accueil_secretaire"))
+                            if request.user.is_superuser:
+                                return HttpResponseRedirect(reverse("inscription:accueil_secretaire"))
+                            else:
+                                return HttpResponseRedirect(reverse("inscription:accueil_nageur"))
                     else:
                         messages.error(request, 'Le nouveau mot de passe est identique à l\'ancien.')
                 else:
@@ -134,7 +137,7 @@ def change_password(request):
 
         return render(request, 'inscription/change_password.html')
     else:
-        return HttpResponseRedirect(reverse("inscription:login_secretaire"))
+        return HttpResponseRedirect(reverse("inscription:accueil"))
 
 def accueil_secretaire(request):
     if request.user.is_superuser:
@@ -222,8 +225,53 @@ def archiver_nageur(request, adherent_id):
 
 def accueil_nageur(request):
     if request.user.is_authenticated and not(request.user.is_superuser):
-        adherents = Inscription.objects.all()
-        return render(request, 'inscription/accueil_nageur.html', {'adherents' : adherents})
+        nageur = request.user.inscription
+        return render(request, 'inscription/accueil_nageur.html', {'nageur' : nageur})
+    else:
+        return HttpResponseRedirect(reverse("inscription:login_nageur"))
+
+def modification_nageur_nageur(request):
+    if request.user.is_authenticated and not(request.user.is_superuser):
+        nageur = request.user.inscription
+        if request.method == 'POST':
+            form = Formulaire_inscription(request.POST)
+            if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
+                reussi = "réussi"
+                adherent = Inscription.objects.get(pk=nageur.id)
+                adherent.nom = request.POST['nom']
+                adherent.prenom = request.POST['prenom']
+                adherent.date_inscription = timezone.now()
+                adherent.date_naissance = request.POST['date_naissance']
+                adherent.mail = request.POST['mail']
+                adherent.telephone = request.POST['telephone']
+                adherent.adresse = request.POST['adresse']
+                adherent.code_postal = request.POST['code_postal']
+                adherent.date_certificat = request.POST['date_certificat']
+                adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
+                adherent.affiche_annuaire = request.POST.get('annuaire',False)
+                adherent.save()
+                return render(request, 'inscription/modification_form.html', {'form' : form, 'reussi' : reussi, 'nageur' : adherent})
+            else:
+                erreur_mail = ""
+                erreur_tel = ""
+                erreur_cp = ""
+
+                if not Regex.verif_mail(form.cleaned_data['mail']) :
+                    erreur_mail = "Mauvais format d'adresse mail"
+                if not Regex.verif_tel(form.cleaned_data['telephone']):
+                    erreur_tel = "Mauvais format de numéro de téléphone : les chiffres doivent être séparés par des points, des tirets ou des espaces"
+                if not Regex.verif_cp(form.cleaned_data['code_postal']):
+                    erreur_cp = "Mauvais format de code postal"
+                context = {
+                    'form' : form,
+                    'erreur_mail' : erreur_mail,
+                    'erreur_tel' : erreur_tel,
+                    'erreur_cp' : erreur_cp
+                }
+                return render(request, 'inscription/modification_form.html', context)
+        else:
+            form = Formulaire_inscription()
+        return render(request, 'inscription/modification_form.html', {'nageur' : nageur, 'form' : form})
     else:
         return HttpResponseRedirect(reverse("inscription:login_nageur"))
 
