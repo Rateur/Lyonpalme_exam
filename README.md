@@ -159,14 +159,17 @@ L'interface Accueil est composé en deux partie
 |--------------------|-------------------|
 | NAGEUR             | SECRETAIRE        |
 
-+ Formulaire 1 
++ Formulaire NAGEUR
++ *URL = http://127.0.0.1:8000/inscription/* 
   + Le formulaire de connexion nageur permet d'acceder a la page d'acceuil nageur.
   + en cas d'oublie du mot de passe nageur, nous pouvons accéder a la fonctionnalité mot de passe oublié.
 
 + Formulaire 2
++ *URL = http://127.0.0.1:8000/inscription/*
   + Le formulaire de connexion secretaire permet d'acceder a la page d'acceuil secretaire.
 
 #### 2.5.3. Formulaire d'accueil nageur
++ *URL = http://127.0.0.1:8000/inscription/*
 en accédant a ce formulaire grace a notre user crée dans django nous pourrons avoir acces a plusieur fonctionnalité.
 
 + Le nageur peut acceder au trombinoscope
@@ -174,6 +177,7 @@ en accédant a ce formulaire grace a notre user crée dans django nous pourrons 
 + Le Nageur peut retourner dans l'accueil 
 
 #### 2.5.3. Formulaire d'accueil secretaire
++ *URL = http://127.0.0.1:8000/inscription/*
 en accédant a ce formulaire grace a notre superuser crée dans django nous pourrons avoir acces a plusieur fonctionnalité.
 
 + le secretaire peut modifier sont mots de passe
