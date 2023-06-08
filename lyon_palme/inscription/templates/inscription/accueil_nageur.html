@@ -20,6 +20,7 @@
 <h1>Accueil Nageur</h1>
 <br/>
 <br/>
+Vos informations :<br/><br/>
 {% if nageur %}
     {{nageur.nom}},<br/><br/>
     {{nageur.prenom}},<br/><br/>
@@ -40,10 +41,7 @@
     Ne souhaite pas apparaître sur l'annuaire<br/><br/>
     {% endif %}
     <br/>
-    <br/>
 {% endif %}
-{{user.username}}
-{{user.password}}
 <a href="{% url 'inscription:modification_nageur_nageur'%}">Modifier mes données personnelles</a>
 <br/>
 <a href="{% url 'inscription:change_password'%}">Modifier mon mot de passe</a>
