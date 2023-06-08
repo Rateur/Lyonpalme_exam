@@ -1,19 +1,108 @@
-# Inscription_lyonpalme
-Ce blog a été créé à partir de `Django4.0`.
-[![Django CI](https://github.com/liangliangyy/DjangoBlog/actions/workflows/django.yml/badge.svg)](https://github.com/liangliangyy/DjangoBlog/actions/workflows/django.yml)  
-# 1er incrément
-Dans le cadre de notre formation (bts SIO option SLAM) nous développons une solution logicielle pour répondre aux besoins de Lyonpalme. Nous nous sommes permis de réécrire en Django le blog laravel de Baptiste Pesquet.
-## Technologies
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="django" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.sqlite.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="sqlite" width="40" height="40"/>
+```                                                                                  
+  _                       _____      _                
+ | |                     |  __ \    | |               
+ | |    _   _  ___  _ __ | |__) |_ _| |_ __ ___   ___ 
+ | |   | | | |/ _ \| '_ \|  ___/ _` | | '_ ` _ \ / _ \
+ | |___| |_| | (_) | | | | |  | (_| | | | | | | |  __/
+ |______\__, |\___/|_| |_|_|   \__,_|_|_| |_| |_|\___|
+         __/ |                                        
+        |___/                                         
 
-## Auteur
-- PERRAT Tom
-- BERRETTONI Milan
-- BOURAGHDA Yasser
-- PERIES Valentin
+```
+ 
+# - Lyon Palme - 
+## ***Application : inscription des adhérents au club.***
+  
+Projet personnel encadré réalisé par **BOURAGHDA Yasser, PERRAT Tom, BERETONI Milan, PEREZ Valentin **,  
+étudiant en 2e année de **BTS Services informatiques aux organisations Option SLAM**.  
 
-## Installation de l'environnement
-```bash
+Professeur : Mme CHATAING  
+Sup'Chassagnes - Oullins (69)  
+ 
+---
+
+## Sommaire
+1. [Introduction](#1-introduction)  
+  1.1. [Présentation de l'application](#11-Présentation-del'application)  
+  1.2. [Technologies et savoir-faire mis en oeuvre](#12-technologies-et-savoir-faire-mis-en-oeuvre)  
+2. [Utiliser l'application](#2-utiliser-lapplication)  
+  2.1. [Environnement logiciel requis](#21-environnement-logiciel-requis)  
+  2.2. [Compte SSMS pour ce connecter a la base de données](#22-Compte-SSMS-pour-ce-connecter-a-la-base-de-données)  
+  2.3. [Configuration de l'application pour la connexion à la base de données](#23-Configuration-de-l'application-pour-la-connexion-à-la-base-de-données)
+  2.3.1 [Chaînes de connexion](#231-Chaînes-de-connexion)    
+  2.4. [Authentification dans l'application (formulaire de connexion)](#24-authentification-dans-lapplication-formulaire-de-connexion)   
+  2.5. [Navigation entre les formulaires](#25-navigation-entre-les-formulaires)
+3. [Annexes](#3-annexes)  
+  3.1. [Migrer les données de Access vers MySQL](#31-migrer-les-donn%C3%A9es-de-access-vers-mysql)  
+  3.2. [Modèle conceptuel de données](#32-mod%C3%A8le-conceptuel-de-donn%C3%A9es)  
+  3.3. [Diagramme de classes](#33-diagramme-de-classes)  
+4. [Remerciements](#4-remerciements)  
+
+---
+
+## 1. Introduction
+### 1.1. Présentation de l'application
+Une application gérant les inscriptions des adhérents au club doit être développée. 
+Elle est utilisée par le(s) secrétaire(s) du club. 
+Cette application permet au adhérent de ce connecter de pouvoir visualiser le trombinoscope, elle permet également la modification de données personnelles, de pouvoir changer son mot de passe, de cree des adhérents grace a des comptes de secretaires, d'archiver également des adhérents.
+
+### 1.2. Technologies et savoir-faire mis en oeuvre
++ Framework : DJANGO
+  + TEMPLATE
+    + BOOSTRAP
+    + HTML
+  + MODELS
+    + MAPPAGE
+  + VIEW
+    + FONCTION 
+    + 
+  + URL
+  + MIGRATIONS
++ REQUIREMENTS.txt
+  + django-cryptography
+  + Pillow
+  + psycopg2
++ DONNES 
+  + Base de données : DBSQLITE
+    + Liens 1 a * 
+    + Chiffrement des données
+  + Modélisation des données : UML, MCD
++ Système de contrôle de version :  Git
+ 
+---
+
+## 2. Utiliser l'application  
+### 2.1. Environnement logiciel requis
++ Django  
++ Visual Studio code 2019 ou 2022
++ Debian  
++ Python3 
+
+Informations sur les versions utilisées lors du développement de l'application :  
++ Django 4.2.2
++ Debian 
++ Python 3.11.4
++ VsCode 1.78.2
+
+
+### 2.2. Compte SSMS pour ce connecter a la base de données
+Les logins que nous avons crée qui respectent le CRUD :
+
+    USER : Pas necessaire
+    PASSWORD :  Pas necessaire
+    
+*Etant donné que nous utilisons une BDD local SQLITE elle n'as aucunement besoin d'username et de mot de passe*
+
+### 2.3. Installation de l'environnement
+Avant tout il est important d'etre en mesure de bien installer notre application :
+
+*ce deplacer dans le projet*  
+```shell
+cd inscriptions_lyon_palmes/
+```
+
+*Installer les différents et bien mettre notre venv dans inscriptions_lyon_palmes*  
+```shell
 sudo apt update
 sudo apt install python3-pip
 sudo apt-get install python3-venv
@@ -21,29 +110,113 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-## Clonnage du projet 
-```bash
-git clone http://192.168.100.232/grp_sio2/grp_labo_slam/inscriptions_lyon_palmes.git
-```
-
-## Déplacement dans le projet :
-```bash
-cd inscriptions_lyon_palmes/
+*installer les librairies*  
+```shell
 cd lyon_palme/
-```
-## Récuperation packages nécessaires :
-```bash
 pip install -r requirements.txt
 ```
-## Caractéristique du premier incrément :
-- BDD Fonctionnelle
-- Chiffrage des données
-- CSS dans le thème de Lyonpalme
-- PIA
-- Logger basique
-- Formulaire d'inscription
-- Regex 
+
+### 2.4. Authentification de l'application (formulaire de connexion)  
+Le(s) secretaire(s) ce connecte a l'application en fournissant l'username et le mot de passe préalablement crée grace au superuser et au shell Django qu'il rentre pour accéder a l'application. 
+
+*Pour crée un compte Secretaire il y a des etapes a suivres :*
+
+```shell
+python3 manage.py createsuperuser
+Nom d’utilisateur: secretaire
+Email d’utilisateur: secretaire@gmail.com
+Password d’utilisateur: C1Secret!
+```
+| Identifiant        | Mot de passe      |
+|--------------------|-------------------|
+| secretaire         | C1Secret!         |
+
+*Pour crée un compte Adhérents il y a des etapes a suivres :*
+```shell
+python3 manage.py shell
+from django.contrib.auth.models import User
+test = User.objects.create_user("nageur","nageur@gmail.com","C1Secret!")
+test.save()
+q
+```
+| Identifiant        | Mot de passe      |
+|--------------------|-------------------|
+| nageur             | C1Secret!         |
+
+     
+### 2.5. Navigation entre les Pages
+#### 2.5.1. Formulaire de Accueil
+
++ *URL = http://127.0.0.1:8000/inscription/*
+La première interface visible par l'utilisateur est le formulaire d'accueil, qui permet de visualiser le contexte du site, d'acceder a la politique de confidentialité du site.  
++ Navbar.
+Dans cet navbar nous pouvons nous connecter pour acceder aux différentes pages qui vont nous interesser, l'une pour ce connecter comme NAGEUR et l'autre pour ce connecter en SECRETAIRE.
+
+#### 2.5.2. Formulaire Connexion
+Une fois l'authentification réussie, l'utilisateur est amené au formulaire principal de l'application.    
+L'interface Accueil est composé en deux partie
+| Formulaire 1       | Formulaire 2      |
+|--------------------|-------------------|
+| NAGEUR             | SECRETAIRE        |
+
++ Formulaire NAGEUR
++ *URL = http://127.0.0.1:8000/inscription/* 
+  + Le formulaire de connexion nageur permet d'acceder a la page d'acceuil nageur.
+  + en cas d'oublie du mot de passe nageur, nous pouvons accéder a la fonctionnalité mot de passe oublié.
+
++ Formulaire 2
++ *URL = http://127.0.0.1:8000/inscription/*
+  + Le formulaire de connexion secretaire permet d'acceder a la page d'acceuil secretaire.
+
+#### 2.5.3. Formulaire d'accueil nageur
++ *URL = http://127.0.0.1:8000/inscription/*
+en accédant a ce formulaire grace a notre user crée dans django nous pourrons avoir acces a plusieur fonctionnalité.
+
++ Le nageur peut acceder au trombinoscope
++ Le Nageur peut ce déconnecter 
++ Le Nageur peut retourner dans l'accueil 
+
+#### 2.5.3. Formulaire d'accueil secretaire
++ *URL = http://127.0.0.1:8000/inscription/*
+en accédant a ce formulaire grace a notre superuser crée dans django nous pourrons avoir acces a plusieur fonctionnalité.
+
++ le secretaire peut modifier sont mots de passe
++ le secretaire peut voir la listes des différents nageur 
++ le secretaire peut modifier les données personelles des nageurs
++ le secretaire peut archiver les données personelles des nageurs
+#### 2.5.4. Documentation Utilisateur
++ 
++  
++ 
++ 
+
+| Ecran de connexion | Affichage de l'ecran d'accueil | Affichage de l'ecran de pret |  
+|---|---|---|
+| ![Connexion](dossier_technique/captures/swissvisite_ecran_connexion.png) | ![Accueil](dossier_technique/captures/swissvisite_rapports.png) | ![Voir pret](dossier_technique/captures/swissvisite_nouveau_rapport.png) |  
+
+
 ---
-## Merci 
-L'équipe constituée de Yasser, Tom, Milan et Valentin, vous remercie pour le temps que vous avez pu accorder à la lecture de notre README.
-🙏🙏🙏
+
+## 3. Annexes  
+### 3.1. UserCase    
+![UserCase](dossier_technique/userstory.png) 
+
+### 3.2. Modèle conceptuel de données  
+![Modèle conceptuel de données](dossier_technique/MCD.png)  
+  
+### 3.3. Diagramme de classes
+![Diagramme de classes](dossier_technique/UML.png) 
+
+---
+
+## 4. Remerciements 
+MERCI
+Voici les différentes sources que nous avons pu utiliser.     
++ **Madame Chataing** Les cours en ligne Teams de madame Chataing [TEAMS]
+  + [La Formation Complète Django [2022]](https://www.youtube.com/watch?v=Bn0k9DDYBZM&t=5502s)
+  + [Django Python](https://www.youtube.com/watch?v=tZ4LXyJAj3w&list=PLh-rUZWaw76H5XOcYneHhuvypENDCkpAf)
+
++ A CHATGPT **[CHATGPT](https://chat.openai.com/)**
+
+  
+
