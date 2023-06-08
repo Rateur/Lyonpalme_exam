@@ -98,6 +98,8 @@ def login_nageur(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # connecter l'utilisateur
+                request.user.inscription.login_count = request.user.inscription.login_count + 1
+                request.user.inscription.save()
                 return HttpResponseRedirect(reverse("inscription:accueil_nageur"))
             else:
                 form.add_error(None, 'Le nom d\'utilisateur ou le mot de passe est incorrect.')
@@ -226,7 +228,9 @@ def archiver_nageur(request, adherent_id):
 def accueil_nageur(request):
     if request.user.is_authenticated and not(request.user.is_superuser):
         nageur = request.user.inscription
-        return render(request, 'inscription/accueil_nageur.html', {'nageur' : nageur})
+        if request.user.inscription.login_count == 1:
+            return HttpResponseRedirect(reverse("inscription:change_password"))
+        return render(request, 'inscription/accueil_nageur.html', {'nageur' : nageur, 'user' : request.user})
     else:
         return HttpResponseRedirect(reverse("inscription:login_nageur"))
 

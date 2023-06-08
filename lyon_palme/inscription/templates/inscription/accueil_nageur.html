@@ -42,6 +42,8 @@
     <br/>
     <br/>
 {% endif %}
+{{user.username}}
+{{user.password}}
 <a href="{% url 'inscription:modification_nageur_nageur'%}">Modifier mes données personnelles</a>
 <br/>
 <a href="{% url 'inscription:change_password'%}">Modifier mon mot de passe</a>
