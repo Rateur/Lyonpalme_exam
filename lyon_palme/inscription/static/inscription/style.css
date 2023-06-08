@@ -4,7 +4,7 @@ label
     font-size: 25px;
     display: block;
     margin: 20px 33% 0;
-    color : rgb(80, 53, 130);}
+    color : black;}
 
 h1
 {font-family: Helvetica;
@@ -27,7 +27,7 @@ input
 {font-family: Helvetica;
     font-weight: bold;
     display: block;
-    color : rgb(80, 53, 130);}
+    color : black;}
 
 body
 {background-color: #9dcff2;}

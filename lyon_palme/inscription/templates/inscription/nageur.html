@@ -2,47 +2,46 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 <nav style="margin-left:2%" class="navbar navbar-expand-lg navbar-light bg-purple"> <!-- Ajout de la classe "bg-purple" -->
-  <a class="navbar-brand" style="font-family:Helvetica;font-weight:bold;color:rgb(80, 53, 130);" href="{% url 'inscription:Accueil' %}">Lyon Palme</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
+      <a class="navbar-brand" style="font-family:Helvetica;font-weight:bold;color:rgb(80, 53, 130);" href="{% url 'inscription:Accueil' %}"><img src="https://images.benchmarkemail.com/client1514081/image13204250.png"  style ="max-width: 150px;"></a>      
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_nageur' %}">Nageur</a>
       <a class="nav-item nav-link" href="{% url 'inscription:accueil_secretaire' %}">Secrétaire</a>
-      <a class="nav-item nav-link" href="{% url 'inscription:logout_view' %}">Deconnexion</a>
+      <a class="nav-item nav-link" href="{% url 'inscription:logout_view' %}">Déconnexion</a>
     </div>
   </div>
 </nav>
 
 <link rel="stylesheet" href="{% static 'inscription/style.css' %}">
 </br>
-<h1>Page {{nageur.prenom}} {{nageur.nom}}</h1>
+<h1 style="color : rgb(80, 53, 130);">Page {{nageur.prenom}} {{nageur.nom}}</h1>
 <br/>
 <br/>
-<br/>
-
+<div style="margin-left:5%">
 {% if nageur %}
-    {{nageur.nom}},<br/><br/>
-    {{nageur.prenom}},<br/><br/>
-    {{nageur.date_naissance}},<br/><br/>
-    {{nageur.mail}},<br/><br/>
-    {{nageur.telephone}},<br/><br/>
-    {{nageur.adresse}},<br/><br/>
-    {{nageur.code_postal}},<br/><br/>
-    {{nageur.date_certificat}},<br/><br/>
+• {{nageur.nom}}<br/><br/>
+• {{nageur.prenom}}<br/><br/>
+• {{nageur.date_naissance}}<br/><br/>
+• {{nageur.mail}}<br/><br/>
+• {{nageur.telephone}}<br/><br/>
+• {{nageur.adresse}}<br/><br/>
+• {{nageur.code_postal}}<br/><br/>
+• {{nageur.date_certificat}}<br/><br/>
     {% if nageur.affiche_trombinoscope == True %}
-    Souhaite apparaître sur le trombinoscope,<br/><br/>
+    • Souhaite apparaître sur le trombinoscope<br/><br/>
     {% else %}
-    Ne souhaite pas apparaître sur le trombinoscope,<br/><br/>
+    • Ne souhaite pas apparaître sur le trombinoscope<br/><br/>
     {% endif %}
     {% if nageur.affiche_annuaire == True %}
-    Souhaite apparaître sur l'annuaire<br/><br/>
+    • Souhaite apparaître sur l'annuaire<br/><br/>
     {% else %}
-    Ne souhaite pas apparaître sur l'annuaire<br/><br/>
+    • Ne souhaite pas apparaître sur l'annuaire<br/><br/>
     {% endif %}
+</div>
+    <center><a href="{% url 'inscription:modification_nageur' nageur.id %}">Modifier profil</a>
+    <a href="{% url 'inscription:archiver_nageur' nageur.id %}">Archiver Nageur</a><center>
     <br/>
-    <br/>
-    <a href="{% url 'inscription:modification_nageur' nageur.id %}">Modifier profil</a>
-    <a href="{% url 'inscription:archiver_nageur' nageur.id %}">Archiver Nageur</a>
 {% endif %}
