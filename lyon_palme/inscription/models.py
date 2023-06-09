@@ -22,6 +22,7 @@ class Inscription(models.Model):
     photo = encrypt(models.ImageField(null=True))
     affiche_trombinoscope = encrypt(models.BooleanField(null=True))
     affiche_annuaire = encrypt(models.BooleanField(null=True))
+    cotisation = encrypt(models.BooleanField(null=True))
 
 class Archive(models.Model):
     nom = encrypt(models.CharField(max_length=50))

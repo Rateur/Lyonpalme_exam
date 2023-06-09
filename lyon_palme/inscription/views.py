@@ -39,6 +39,7 @@ def inscription_form(request):
                 adherent.date_certificat = request.POST['date_certificat']
                 adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
                 adherent.affiche_annuaire = request.POST.get('annuaire',False)
+                adherent.cotisation = request.POST.get('cotisation', False)
                 adherent.save()
 
                 return render(request, 'inscription/inscription_form.html', {'form' : form, 'reussi' : reussi})
@@ -176,6 +177,7 @@ def modification_nageur(request, adherent_id):
                 adherent.date_certificat = request.POST['date_certificat']
                 adherent.affiche_trombinoscope = request.POST.get('trombinoscope',False)
                 adherent.affiche_annuaire = request.POST.get('annuaire',False)
+                adherent.cotisation = request.POST.get('cotisation', False)
                 adherent.save()
                 return render(request, 'inscription/modification_form.html', {'form' : form, 'reussi' : reussi, 'nageur' : adherent})
             else:
