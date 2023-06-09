@@ -133,11 +133,11 @@ Password d’utilisateur: C1Secret!
 
 *Pour crée un compte Adhérents il y a des etapes a suivres :*
 ```shell
-python3 manage.py shell
-from django.contrib.auth.models import User
-test = User.objects.create_user("nageur","nageur@gmail.com","C1Secret!")
-test.save()
-q
+Ce connecter en Secrétaire, la secretaire inscris un adhérent
+le compte de l'adhérent ce componsera en deux partie 
+premier *lettre du prenom suivis du nom de famille* 
+le mot de passe sera la date de naissance : *annee mois jours*
+une fois la premiere connexion
 ```
 | Identifiant        | Mot de passe      |
 |--------------------|-------------------|
@@ -184,18 +184,6 @@ en accédant a ce formulaire grace a notre superuser crée dans django nous pour
 + le secretaire peut voir la listes des différents nageur 
 + le secretaire peut modifier les données personelles des nageurs
 + le secretaire peut archiver les données personelles des nageurs
-#### 2.5.4. Documentation Utilisateur
-+ 
-+  
-+ 
-+ 
-
-| Ecran de connexion | Affichage de l'ecran d'accueil | Affichage de l'ecran de pret |  
-|---|---|---|
-| ![Connexion](dossier_technique/captures/swissvisite_ecran_connexion.png) | ![Accueil](dossier_technique/captures/swissvisite_rapports.png) | ![Voir pret](dossier_technique/captures/swissvisite_nouveau_rapport.png) |  
-
-
----
 
 ## 3. Annexes  
 ### 3.1. UserCase    
@@ -206,6 +194,9 @@ en accédant a ce formulaire grace a notre superuser crée dans django nous pour
   
 ### 3.3. Diagramme de classes
 ![Diagramme de classes](dossier_technique/UML.png) 
+
+### 3.4. Diagramme de sequence
+![Diagramme de classes](dossier_technique/sequence.png)
 
 ---
 
