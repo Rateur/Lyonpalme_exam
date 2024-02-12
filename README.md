@@ -13,7 +13,7 @@
 # - Lyon Palme - 
 ## ***Application : inscription des adhérents au club.***
   
-Projet personnel encadré réalisé par **BOURAGHDA Yasser, PERRAT Tom, BERETONI Milan, PEREZ Valentin **,  
+Projet personnel encadré réalisé par **BOURAGHDA Yasser, PERRAT Tom, BERETONI Milan, PERIES Valentin **,  
 étudiant en 2e année de **BTS Services informatiques aux organisations Option SLAM**.  
 
 Professeur : Mme CHATAING  
