@@ -1,19 +1,3 @@
-<h1 align="center">LyonPalme · Application d'inscription des adhérents</h1>
-<p align="center">
-  <a href="#apropos">À propos</a> ·
-  <a href="#technologies">Technologies</a> ·
-  <a href="#structure">Structure</a> ·
-  <a href="#installation">Installation</a> ·
-  <a href="#authentification">Authentification</a> ·
-  <a href="#navigation">Navigation</a> ·
-  <a href="#annexes">Annexes</a> ·
-  <a href="#remerciements">Remerciements</a>
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/BTS%20SIO%20SLAM-Projet%20d'examen-0e75b6?style=for-the-badge" alt="BTS SIO SLAM">
-  <img src="https://img.shields.io/badge/Sup'Chassagnes-Oullins%20(69)-40b5a4?style=for-the-badge" alt="Sup'Chassagnes">
-</p>
-
 ```
                                                                                   
   _                       _____      _                
@@ -25,6 +9,11 @@
          __/ |                                        
         |___/                                         
 ```
+
+<p align="center">
+  <img src="https://img.shields.io/badge/BTS%20SIO%20SLAM-Projet%20d'examen-0e75b6?style=for-the-badge" alt="BTS SIO SLAM">
+  <img src="https://img.shields.io/badge/Sup'Chassagnes-Oullins%20(69)-40b5a4?style=for-the-badge" alt="Sup'Chassagnes">
+</p>
 
 ## Sommaire
 1. [À propos](#apropos)  
@@ -43,7 +32,8 @@
 6. [Navigation & formulaires](#navigation)  
 7. [Utilisation & scénarios](#utilisation)  
 8. [Annexes & ressources](#annexes)  
-9. [Remerciements](#remerciements)
+9. [Sources](#sources)  
+10. [Remerciements](#remerciements)
 
 ## <a id="apropos"></a>À propos
 <a id="presentation-generale"></a>
@@ -59,7 +49,13 @@ Cette version enrichie du README conserve l’intégralité des informations d�
 - **Equipe projet** : Yasser Bouraghda, Tom Perrat, Milan Beretoni, Valentin Peries  
 - **Encadrement** : Mme Chataing – Sup'Chassagnes (69)  
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+#### Objectifs pédagogiques et fonctionnels
+- Mettre en œuvre un cycle complet d’inscription numérique (création, mise à jour, archivage) avec garanties de confidentialité.
+- Illustrer notre maîtrise de Django : formulaires dynamiques, gestion des utilisateurs et intégration d’expressions régulières.
+- Démontrer la capacité à documenter un projet examiné par un jury externe grâce à une base documentaire (UML, MCD, user stories).
+- Offrir une expérience différenciée secrétaire / nageur pour répondre aux besoins réels des clubs sportifs.
+
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="technologies"></a>Technologies & savoir-faire
 <table align="center">
@@ -111,7 +107,7 @@ Cette version enrichie du README conserve l’intégralité des informations d�
   - Debian (distribution de référence)
   - VSCode 1.78.2
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="structure"></a>Structure du dépôt
 ```
@@ -141,7 +137,7 @@ Lyonpalme_exam/
     └── requirements.txt
 ```
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="installation"></a>Installation & prérequis
 <a id="env-requis"></a>
@@ -188,7 +184,7 @@ Les logins dédiés ne sont **pas nécessaires** : la base SQLite locale ne requ
 #### Chaînes de connexion
 En configuration locale, aucune chaîne de connexion supplémentaire n’est requise grâce à l’usage de SQLite. Pour un SGBD distant, documenter la chaîne dans `settings.py` ou dans des variables d’environnement.
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="authentification"></a>Authentification & comptes
 ### Vue d'ensemble
@@ -222,7 +218,7 @@ Mot de passe = date de naissance AAAAMMJJ
 - À la première connexion, un nageur est redirigé vers le formulaire de changement de mot de passe.
 - L'attribut `login_count` stocké dans `Inscription` permet de contrôler cette obligation.
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="navigation"></a>Navigation & formulaires
 ### Accueil public
@@ -249,11 +245,18 @@ Mot de passe = date de naissance AAAAMMJJ
   - Modifier et archiver les fiches adhérents
   - Administrer les inscriptions et vérifier la politique de confidentialité
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="utilisation"></a>Utilisation & scénarios
 ### Présentation de l’application
 L’outil centralise la gestion des adhérents du club (fictif) : inscription, suivi des documents, gestion des droits d’affichage (trombinoscope, annuaire) et archivage. Les secrétaires pilotent l’ensemble des actions quotidiennes tandis que les adhérents disposent d’un accès autonome.
+
+### Fonctionnalités clés
+- Création d’un compte adhérent à partir d’un formulaire secrétaire (génération automatique de l’identifiant et du mot de passe initial).
+- Consultation et mise à jour des informations personnelles, y compris le changement de mot de passe imposé à la première connexion.
+- Visualisation du trombinoscope et accès rapide aux documents de référence (politique de confidentialité, informations club).
+- Archivage d’un membre : l’historique est déplacé dans `Archive` avec date de désinscription, sans perte de données.
+- Contrôles de saisie renforcés grâce aux regex (mails, téléphones, codes postaux, mots de passe).
 
 ### Parcours type
 1. **Secrétaire** se connecte via `/login_secretaire`.
@@ -276,7 +279,7 @@ L’outil centralise la gestion des adhérents du club (fictif) : inscription, 
 - Des scripts internes (non publiés) ont permis de migrer les données Access vers SQLite/MySQL durant le projet.
 - Le chiffrement de `Inscription` et `Archive` assure la conformité RGPD.
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
 ## <a id="annexes"></a>Annexes & ressources
 - **User Story** – description des rôles et parcours principaux  
@@ -293,13 +296,23 @@ L’outil centralise la gestion des adhérents du club (fictif) : inscription, 
 
 - Documentation fonctionnelle et dossiers annexes : `dossier_technique/`
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
 
-## <a id="remerciements"></a>Remerciements
-MERCI  
-Sources pédagogiques mobilisées :
-- **Mme Chataing** – cours en ligne Teams
+## <a id="sources"></a>Sources
+- [Documentation officielle Django](https://docs.djangoproject.com/fr/4.2/) – référence pour le paramétrage, les vues et l’ORM.
+- [Guide Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) – composants utilisés pour la mise en forme des templates.
+- [Documentation Python 3.11](https://docs.python.org/3.11/) – bonnes pratiques sur les virtualenvs et modules standard.
+- Cours et supports internes Sup’Chassagnes (Teams) mis à disposition par **Mme Chataing**.
+- Recommandations vidéo :
   - [La formation complète Django (2022)](https://www.youtube.com/watch?v=Bn0k9DDYBZM&t=5502s)
   - [Django Python](https://www.youtube.com/watch?v=tZ4LXyJAj3w&list=PLh-rUZWaw76H5XOcYneHhuvypENDCkpAf)
 
-<p align="right"><a href="#top">⬆ Retour en haut</a></p>
+<p align="right"><a href="#top">Retour en haut</a></p>
+
+## <a id="remerciements"></a>Remerciements
+Nous remercions sincèrement toutes les personnes qui ont contribué à la réussite de ce projet :
+- **Mme Chataing**, pour son accompagnement constant, ses retours exigeants et la confiance accordée à notre équipe.
+- L’ensemble de l’équipe pédagogique du BTS SIO SLAM, qui nous a transmis les bases techniques exploitées ici.
+- Nos camarades de promotion, pour leurs tests, leurs remarques et leur soutien tout au long de l’année.
+
+<p align="right"><a href="#top">Retour en haut</a></p>
