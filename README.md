@@ -13,11 +13,11 @@
 <p align="center">
   <img src="https://img.shields.io/badge/BTS%20SIO%20SLAM-Projet%20d'examen-0e75b6?style=for-the-badge" alt="BTS SIO SLAM">
   <img src="https://img.shields.io/badge/Sup'Chassagnes-Oullins%20(69)-40b5a4?style=for-the-badge" alt="Sup'Chassagnes">
-  <img src="https://img.shields.io/github/stars/esinbsr/chatbot-microsoft.svg?style=for-the-badge&color=ffd700" alt="GitHub Stars">
+  <img src="https://img.shields.io/github/stars/Rateur/Lyonpalme_exam.svg?style=for-the-badge&color=ffd700" alt="Étoiles GitHub">
 </p>
 <p align="center">
-  <a href="https://github.com/esinbsr/chatbot-microsoft/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/esinbsr/chatbot-microsoft.svg?style=for-the-badge&color=0e75b6" alt="Contributors">
+  <a href="https://github.com/Rateur/Lyonpalme_exam/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/Rateur/Lyonpalme_exam.svg?style=for-the-badge&color=0e75b6" alt="Contributeurs">
   </a>
 </p>
 
