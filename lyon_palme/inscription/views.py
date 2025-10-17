@@ -13,12 +13,16 @@ from .models import Inscription,Archive
 
 @login_required
 def inscription_form(request):
+    """
+    Permet aux secrétaires (superutilisateurs) de créer un compte Django et une fiche adhérent chiffrée.
+    """
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulaire_inscription(request.POST)
             if form.is_valid() and Regex.verif_mail(form.cleaned_data['mail']) and Regex.verif_tel(form.cleaned_data['telephone']) and Regex.verif_cp(form.cleaned_data['code_postal']):
                 reussi = "Utilisateur ajouté avec succès"
-                
+
+                # Génère les identifiants par défaut : initiale du prénom + nom, mot de passe = date de naissance
                 login = request.POST['prenom'][0]+request.POST['nom']
                 mdp = request.POST['date_naissance']
                 mail = request.POST['mail']
@@ -112,6 +116,9 @@ def login_nageur(request):
 
 @login_required
 def change_password(request):
+    """
+    Force le changement de mot de passe après la première connexion et applique la politique de sécurité Regex.
+    """
     if request.user.is_authenticated:
         if request.method == 'POST':
             old_password = request.POST.get('old_password')
@@ -160,6 +167,9 @@ def nageur(request, adherent_id):
 
 @login_required
 def modification_nageur(request, adherent_id):
+    """
+    Met à jour la fiche d'un adhérent sélectionné par un secrétaire, avec contrôles métiers et logique de succès/erreur.
+    """
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulaire_inscription(request.POST)
@@ -207,6 +217,9 @@ def modification_nageur(request, adherent_id):
 
 @login_required
 def archiver_nageur(request, adherent_id):
+    """
+    Archive un adhérent pour conserver son historique tout en le retirant des inscriptions actives.
+    """
     if request.user.is_superuser:
         inscription = Inscription.objects.get(pk=adherent_id)
         archive = Archive()
@@ -238,6 +251,9 @@ def accueil_nageur(request):
         return HttpResponseRedirect(reverse("inscription:login_nageur"))
 
 def modification_nageur_nageur(request):
+    """
+    Offre aux nageurs la possibilité d'actualiser leurs données personnelles en autonomie depuis leur espace.
+    """
     if request.user.is_authenticated and not(request.user.is_superuser):
         nageur = request.user.inscription
         if request.method == 'POST':
@@ -290,6 +306,7 @@ def logout_view(request):
 
 def trombinoscope(request):
     if request.user.is_authenticated and not(request.user.is_superuser):
+        # Liste d'images de démonstration ; à relier à un stockage dynamique lors des prochaines évolutions
         image_list = ['Beatrice.jpeg', 'emma.jpg', 'eva.jpg', 'milan.jpg', 'Tom.jpg']  # Liste des noms d'images
 
         context = {

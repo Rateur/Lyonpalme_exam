@@ -2,9 +2,9 @@ from django.db import models
 from django_cryptography.fields import encrypt
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 class Inscription(models.Model):
+    """Fiche adhérent chiffrée, liée à un utilisateur Django et enrichie des pièces justificatives."""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     login_count = encrypt(models.IntegerField(null=True, default=0))
     nom = encrypt(models.CharField(max_length=50))
@@ -25,6 +25,7 @@ class Inscription(models.Model):
     cotisation = encrypt(models.BooleanField(null=True))
 
 class Archive(models.Model):
+    """Historique des adhérents désinscrits afin de conserver une trace sécurisée."""
     nom = encrypt(models.CharField(max_length=50))
     prenom = encrypt(models.CharField(max_length=50))
     date_naissance = encrypt(models.DateTimeField(max_length=50))
