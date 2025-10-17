@@ -13,6 +13,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/BTS%20SIO%20SLAM-Projet%20d'examen-0e75b6?style=for-the-badge" alt="BTS SIO SLAM">
   <img src="https://img.shields.io/badge/Sup'Chassagnes-Oullins%20(69)-40b5a4?style=for-the-badge" alt="Sup'Chassagnes">
+  <img src="https://img.shields.io/github/stars/esinbsr/chatbot-microsoft.svg?style=for-the-badge&color=ffd700" alt="GitHub Stars">
+</p>
+<p align="center">
+  <a href="https://github.com/esinbsr/chatbot-microsoft/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/esinbsr/chatbot-microsoft.svg?style=for-the-badge&color=0e75b6" alt="Contributors">
+  </a>
 </p>
 
 ## Sommaire
