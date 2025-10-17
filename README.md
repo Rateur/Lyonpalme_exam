@@ -1,8 +1,3 @@
-<a id="top"></a>
-
-<p align="center">
-  <img src="docs/img/logo-lyon.svg" alt="Ville de Lyon" height="60">
-</p>
 <h1 align="center">LyonPalme · Application d'inscription des adhérents</h1>
 <p align="center">
   <a href="#apropos">À propos</a> ·
