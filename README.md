@@ -22,48 +22,33 @@
 </p>
 
 ## Sommaire
-1. [À propos](#apropos)  
-   1.1. [Présentation générale](#presentation-generale)  
-   1.2. [Equipe & encadrement](#equipe-encadrement)  
-2. [Technologies & savoir-faire](#technologies)  
-3. [Structure du dépôt](#structure)  
-4. [Installation & prérequis](#installation)  
-   4.1. [Environnement logiciel requis](#env-requis)  
-   4.2. [Préparation de l'environnement](#env-preparation)  
-   4.3. [Installation des dépendances](#installation-dependances)  
-   4.4. [Base de données](#installation-bdd)  
-   4.5. [Compte SSMS](#installation-ssms)  
-   4.6. [Configuration de l'application](#installation-configuration)  
-5. [Authentification & comptes](#authentification)  
-6. [Navigation & formulaires](#navigation)  
-7. [Utilisation & scénarios](#utilisation)  
-8. [Annexes & ressources](#annexes)  
-9. [Sources](#sources)  
+1. [À propos](#apropos)
+2. [Technologies](#technologies)
+3. [Structure du dépôt](#structure)
+4. [Installation](#installation)
+5. [Authentification & comptes](#authentification)
+6. [Navigation](#navigation)
+7. [Fonctionnement & limites](#utilisation)
+8. [Annexes](#annexes)
+9. [Sources](#sources)
 10. [Remerciements](#remerciements)
 
 ## <a id="apropos"></a>À propos
-<a id="presentation-generale"></a>
-Projet personnel encadré réalisé par **Yasser Bouraghda, Tom Perrat, Milan Beretoni et Valentin Peries**, étudiants en 2ᵉ année de **BTS Services Informatiques aux Organisations – option SLAM** à Sup'Chassagnes (Oullins, 69), sous la supervision de Mme Chataing.  
+Projet d'examen du BTS SIO option SLAM, mai 2023, à Sup'Chassagnes (Oullins, 69). Équipe de quatre en méthode Scrum, encadrée par Mme Chataing.
 
-L'application web LyonPalme gère l'inscription et le suivi des adhérents du club (projet fictif) :
-- Les secrétaires administrent les comptes, archivent les anciens membres et suivent les cotisations.
-- Les nageurs consultent le trombinoscope et mettent à jour leurs informations personnelles.
+- **Équipe** : Yasser Bouraghda, Tom Perrat, Milan Beretoni, Valentin Peries (Scrum Master).
+- **Application** : LyonPalme gère l'inscription et le suivi des adhérents d'un club fictif dont les adhérents sont des nageurs.
+- **Secrétaires** : créent les comptes, modifient et archivent les fiches, suivent les cotisations.
+- **Nageurs** : modifient leurs informations et consultent le trombinoscope.
 
-Cette version enrichie du README conserve l’intégralité des informations d’origine tout en offrant une présentation plus structurée et moderne, inspirée des standards de documentation professionnels.
+Objectifs du projet :
+- Couvrir un cycle d'inscription complet : création, mise à jour, archivage.
+- Chiffrer les données personnelles des fiches.
+- Pratiquer Django : formulaires, utilisateurs, expressions régulières.
+- Documenter pour un jury externe : UML, MCD, diagramme de séquence, user stories.
+- Séparer les parcours secrétaire et nageur.
 
-<a id="equipe-encadrement"></a>
-- **Equipe projet** : Yasser Bouraghda, Tom Perrat, Milan Beretoni, Valentin Peries  
-- **Encadrement** : Mme Chataing – Sup'Chassagnes (69)  
-
-#### Objectifs pédagogiques et fonctionnels
-- Mettre en œuvre un cycle complet d’inscription numérique (création, mise à jour, archivage) avec garanties de confidentialité.
-- Illustrer notre maîtrise de Django : formulaires dynamiques, gestion des utilisateurs et intégration d’expressions régulières.
-- Démontrer la capacité à documenter un projet examiné par un jury externe grâce à une base documentaire (UML, MCD, user stories).
-- Offrir une expérience différenciée secrétaire / nageur pour répondre aux besoins réels des clubs sportifs.
-
-<p align="right"><a href="#top">Retour en haut</a></p>
-
-## <a id="technologies"></a>Technologies & savoir-faire
+## <a id="technologies"></a>Technologies
 <table align="center">
   <tr>
     <td align="center" width="150">
@@ -75,7 +60,7 @@ Cette version enrichie du README conserve l’intégralité des informations d�
     <td align="center" width="150">
       <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer">
         <img src="docs/img/django.svg" alt="Django" height="48" />
-        <br /><sub><strong>Django 4.2.x</strong></sub>
+        <br /><sub><strong>Django 4.1.4</strong></sub>
       </a>
     </td>
     <td align="center" width="150">
@@ -87,39 +72,28 @@ Cette version enrichie du README conserve l’intégralité des informations d�
     <td align="center" width="150">
       <a href="https://www.sqlite.org/" target="_blank" rel="noreferrer">
         <img src="docs/img/sqlite.svg" alt="SQLite" height="48" />
-        <br /><sub><strong>SQLite chiffrée</strong></sub>
+        <br /><sub><strong>SQLite</strong></sub>
       </a>
     </td>
   </tr>
 </table>
 
-- **Framework : Django**
-  - Templates : Bootstrap, HTML
-  - Models : mappage ORM, migrations
-  - Views : vues fonctionnelles, contrôles métiers
-  - URLs : routage côté application
-- **Fichier `requirements.txt`** : `django-cryptography`, `Pillow`, `psycopg2`, `asgiref`, `sqlparse`, `cffi`, `cryptography`, `pycparser`, `django-appconf`
-- **Données**
-  - Base locale : SQLite (liens 1 à n, chiffrement des données sensibles)
-  - Modélisation : UML, MCD, diagrammes de séquence
-- **Outils** : Git, Debian, Visual Studio Code 2019/2022
-- **Librairies transverses** :
-  - `django-cryptography` pour le chiffrement transparent des champs
-  - `Pillow` pour la gestion des fichiers image (photos, certificats)
-  - `psycopg2` pour l’ouverture future vers PostgreSQL
-- **Versions utilisées lors du développement** :
-  - Django 4.2.2
-  - Python 3.11.4
-  - Debian (distribution de référence)
-  - VSCode 1.78.2
-
-<p align="right"><a href="#top">Retour en haut</a></p>
+- **Django** : templates, ORM avec 6 migrations, vues sous forme de fonctions, routage par application.
+- **Base de données** : SQLite, fichier `lyon_palme/db.sqlite3`. Pas de MongoDB.
+- **Chiffrement** : `django-cryptography` chiffre les champs des fiches `Inscription` et `Archive`. Le fichier SQLite lui-même n'est pas chiffré. Le compte Django (`User`: identifiant, e-mail) ne l'est pas non plus.
+- **Bootstrap** : chargé depuis un CDN (version 5.3.0) dans les templates.
+- **Dépendances épinglées** (`lyon_palme/requirements.txt`) : `Django 4.1.4`, `django-cryptography 1.1`, `django-appconf 1.0.5`, `cryptography 38.0.4`, `cffi 1.15.1`, `pycparser 2.21`, `Pillow 9.3.0`, `asgiref 3.5.2`, `sqlparse 0.4.3`, `psycopg2 2.9.6`. `settings.py` n'utilise pas `psycopg2`.
+- **Outils** : Git, Debian, Visual Studio Code 1.78.2.
+- **Modélisation** : UML, MCD, diagramme de séquence, user stories.
 
 ## <a id="structure"></a>Structure du dépôt
 ```
 Lyonpalme_exam/
 ├── README.md
+├── docs/img/                    # icônes du README
 ├── dossier_technique/
+│   ├── cdc - client léger - gestion des adhérents.pdf
+│   ├── Documentation utilisateur.docx
 │   ├── MCD.png
 │   ├── UML.png
 │   ├── sequence.png
@@ -127,11 +101,13 @@ Lyonpalme_exam/
 └── lyon_palme/
     ├── inscription/
     │   ├── forms.py
-    │   ├── logger.py
+    │   ├── logger.py            # journaux info.log et critic.log, non importé par les vues
     │   ├── models.py
-    │   ├── regex.py
+    │   ├── regex.py             # validations mail, téléphone, code postal, mot de passe
+    │   ├── migrations/
     │   ├── static/
     │   ├── templates/
+    │   ├── tests.py             # vide
     │   ├── urls.py
     │   └── views.py
     ├── lyon_palme/
@@ -143,182 +119,133 @@ Lyonpalme_exam/
     └── requirements.txt
 ```
 
-<p align="right"><a href="#top">Retour en haut</a></p>
+## <a id="installation"></a>Installation
+### Prérequis
+- <img src="docs/img/python.svg" alt="Python" height="16"> Python 3.11 (3.11.4 en développement). Les versions épinglées datent de 2022 et ciblent Python 3.11 au plus.
+- <img src="docs/img/django.svg" alt="Django" height="16"> Django 4.1.4, installé par `requirements.txt`.
+- <img src="docs/img/debian.svg" alt="Debian" height="16"> Debian ou équivalent pour les commandes `apt` ci-dessous.
+- <img src="docs/img/vscode.svg" alt="Visual Studio Code" height="16"> Visual Studio Code, au choix.
 
-## <a id="installation"></a>Installation & prérequis
-<a id="env-requis"></a>
-### 1. Environnement logiciel requis
-- <img src="docs/img/python.svg" alt="Python" height="16"> Python 3 (3.11.4 utilisé, compatible 3.10+)
-- <img src="docs/img/django.svg" alt="Django" height="16"> Django 4.2.2
-- <img src="docs/img/debian.svg" alt="Debian" height="16"> Debian (ou distribution équivalente)
-- <img src="docs/img/vscode.svg" alt="Visual Studio Code" height="16"> Visual Studio Code 2019/2022
-
-<a id="env-preparation"></a>
-### 2. Préparation de l'environnement
+### Environnement et dépendances
 ```bash
-cd inscriptions_lyon_palmes/
+git clone https://github.com/Rateur/Lyonpalme_exam.git
+cd Lyonpalme_exam/lyon_palme
 sudo apt update
-sudo apt install python3-pip
-sudo apt-get install python3-venv
+sudo apt install python3-pip python3-venv
 python3 -m venv venv
 source venv/bin/activate  # Windows : venv\Scripts\activate
-```
-
-<a id="installation-dependances"></a>
-### 3. Installation des dépendances
-```bash
-cd lyon_palme/
 pip install -r requirements.txt
 ```
-> Astuce : exécuter `pip list --format=columns` après installation pour vérifier que les versions attendues sont bien installées.
+Si l'installation de `psycopg2` échoue à la compilation, retirez cette ligne de `requirements.txt` : `settings.py` ne s'en sert pas.
 
-<a id="installation-bdd"></a>
-### 4. Base de données
-La base **SQLite** est embarquée et ne nécessite ni identifiant ni mot de passe.
-- Pour développer sur une base distante (PostgreSQL ou MySQL), prévoir la mise à jour de `settings.py`.
-- Les champs sensibles sont chiffrés via `django-cryptography`.
+### Clé secrète
+`SECRET_KEY` vient de la variable d'environnement `DJANGO_SECRET_KEY`. Sans elle, Django génère une clé aléatoire à chaque démarrage.
 
-<a id="installation-ssms"></a>
-### 5. Compte SSMS pour se connecter à la base de données
-Les logins dédiés ne sont **pas nécessaires** : la base SQLite locale ne requiert ni utilisateur ni mot de passe, ce qui simplifie le CRUD pendant le développement.
+```bash
+export DJANGO_SECRET_KEY="une-longue-valeur-secrète"  # PowerShell : $env:DJANGO_SECRET_KEY="..."
+```
 
-<a id="installation-configuration"></a>
-### 6. Configuration de l'application pour la connexion à la base
-- Les paramètres par défaut de `lyon_palme/settings.py` pointent vers la base SQLite embarquée.
-- Pour un futur passage sur PostgreSQL/MySQL, adapter les paramètres `ENGINE`, `NAME`, `USER`, `PASSWORD`, `HOST`, `PORT`.
+- Avec une clé aléatoire, les sessions ouvertes sont perdues à chaque redémarrage.
+- À confirmer : `django-cryptography` dérive sa clé de chiffrement de `SECRET_KEY` par défaut. Si c'est le cas, les champs chiffrés déjà enregistrés deviennent illisibles avec une autre clé. Définissez alors une valeur fixe dès le premier lancement.
 
-#### Chaînes de connexion
-En configuration locale, aucune chaîne de connexion supplémentaire n’est requise grâce à l’usage de SQLite. Pour un SGBD distant, documenter la chaîne dans `settings.py` ou dans des variables d’environnement.
-
-<p align="right"><a href="#top">Retour en haut</a></p>
+### Base de données et lancement
+```bash
+python manage.py migrate
+python manage.py createsuperuser   # compte secrétaire
+python manage.py runserver         # http://127.0.0.1:8000/inscription/
+```
+- SQLite ne demande ni identifiant ni mot de passe. La base `db.sqlite3` est ignorée par Git : elle se crée avec `migrate`.
+- Pour un autre moteur (PostgreSQL, MySQL), modifier `DATABASES` dans `lyon_palme/settings.py`. Rien n'est prévu dans le dépôt pour cela.
+- `DEBUG = True` et `ALLOWED_HOSTS = []` : usage local uniquement.
+- Les e-mails (réinitialisation de mot de passe) ne partent pas. Django les écrit dans `lyon_palme/sent_emails/` (`EmailBackend` fichier).
 
 ## <a id="authentification"></a>Authentification & comptes
-### Vue d'ensemble
-- Les secrétaires utilisent un compte superutilisateur Django.
-- Les nageurs disposent de comptes créés automatiquement par les secrétaires lors de l'inscription.
-- Les mots de passe par défaut sont régénérés et contrôlés par une politique stricte (voir `Regex.verif_mdp`).
+### Secrétaire
+Un secrétaire est un superutilisateur Django, créé avec `createsuperuser`. Compte utilisé pour la démonstration, à recréer en local :
 
-### Compte secrétaire
-Pour créer un compte secrétaire :
-```bash
-python3 manage.py createsuperuser
-Nom d’utilisateur: secretaire
-Email d’utilisateur: secretaire@gmail.com
-Password d’utilisateur: C1Secret!
-```
+| Identifiant | E-mail                | Mot de passe |
+|-------------|-----------------------|--------------|
+| secretaire  | secretaire@gmail.com  | C1Secret!    |
 
-| Identifiant | Mot de passe |
-|-------------|--------------|
-| secretaire  | C1Secret!    |
+### Adhérents (nageurs)
+Un secrétaire crée le compte avec le formulaire d'inscription.
+- **Identifiant** : initiale du prénom + nom, casse saisie conservée (Jean Dupont donne `JDupont`).
+- **Mot de passe initial** : date de naissance au format `AAAA-MM-JJ` (champ date du formulaire).
+- À la première connexion, `login_count` vaut 1 et le nageur est redirigé vers `change_password`.
+- Politique du nouveau mot de passe (`Regex.verif_mdp`) : une minuscule, une majuscule, un chiffre, puis soit 12 caractères avec un caractère spécial, soit 14 caractères.
+- Le nouveau mot de passe doit différer de l'ancien.
 
-### Comptes adhérents
-Création par un secrétaire via le formulaire d'inscription :
-```text
-Identifiant = initiale du prénom + nom (ex. jdupont)
-Mot de passe = date de naissance AAAAMMJJ
-```
-| Identifiant | Mot de passe |
-|-------------|--------------|
-| nageur      | AAAAMMJJ     |
+## <a id="navigation"></a>Navigation
+Base : `http://127.0.0.1:8000/inscription/`
 
-- À la première connexion, un nageur est redirigé vers le formulaire de changement de mot de passe.
-- L'attribut `login_count` stocké dans `Inscription` permet de contrôler cette obligation.
+| Route | Rôle |
+|-------|------|
+| `` | Accueil public |
+| `politique_confidentialite` | Politique de confidentialité |
+| `login_nageur` | Connexion nageur, lien « Mot de passe oublié » |
+| `login_secretaire` | Connexion secrétaire, même lien |
+| `accueil_nageur` | Espace nageur |
+| `accueil_nageur/modification_nageur/` | Le nageur modifie ses informations |
+| `accueil_nageur/trombinoscope/` | Trombinoscope |
+| `accueil_secretaire` | Liste des adhérents |
+| `inscription_form` | Création d'un adhérent |
+| `accueil_secretaire/<id>/` | Fiche d'un adhérent |
+| `accueil_secretaire/<id>/modification_nageur` | Modification par le secrétaire (cotisation comprise) |
+| `accueil_secretaire/<id>/archiver_nageur` | Archivage |
+| `change_password` | Changement de mot de passe |
+| `logout_view` | Déconnexion |
 
-<p align="right"><a href="#top">Retour en haut</a></p>
+Hors de `/inscription/` : `/admin/` (administration Django) et `/accounts/` (réinitialisation de mot de passe).
 
-## <a id="navigation"></a>Navigation & formulaires
-### Accueil public
-- URL : `http://127.0.0.1:8000/inscription/`
-- Présente le club, la politique de confidentialité  
-  (`http://127.0.0.1:8000/inscription/politique_confidentialite`)  
-- Barre de navigation menant vers les portails Secrétaire et Nageur
-
-### Portail de connexion
-| Formulaire | URL                                               | Rôle |
-|------------|---------------------------------------------------|------|
-| Nageur     | `http://127.0.0.1:8000/inscription/login_nageur`  | Accès à l’espace nageur, mot de passe oublié |
-| Secrétaire | `http://127.0.0.1:8000/inscription/login_secretaire` | Accès à l’espace secrétaire |
-
-### Espace nageur
-- URL : `http://127.0.0.1:8000/inscription/accueil_nageur`
-- Fonctions : consulter/modifier les données personnelles, accéder au trombinoscope, se déconnecter, revenir à l’accueil.
-
-### Espace secrétaire
-- URL : `http://127.0.0.1:8000/inscription/accueil_secretaire`
-- Fonctions :
-  - Modifier son mot de passe
-  - Consulter la liste des nageurs
-  - Modifier et archiver les fiches adhérents
-  - Administrer les inscriptions et vérifier la politique de confidentialité
-
-<p align="right"><a href="#top">Retour en haut</a></p>
-
-## <a id="utilisation"></a>Utilisation & scénarios
-### Présentation de l’application
-L’outil centralise la gestion des adhérents du club (fictif) : inscription, suivi des documents, gestion des droits d’affichage (trombinoscope, annuaire) et archivage. Les secrétaires pilotent l’ensemble des actions quotidiennes tandis que les adhérents disposent d’un accès autonome.
-
-### Fonctionnalités clés
-- Création d’un compte adhérent à partir d’un formulaire secrétaire (génération automatique de l’identifiant et du mot de passe initial).
-- Consultation et mise à jour des informations personnelles, y compris le changement de mot de passe imposé à la première connexion.
-- Visualisation du trombinoscope et accès rapide aux documents de référence (politique de confidentialité, informations club).
-- Archivage d’un membre : l’historique est déplacé dans `Archive` avec date de désinscription, sans perte de données.
-- Contrôles de saisie renforcés grâce aux regex (mails, téléphones, codes postaux, mots de passe).
-
+## <a id="utilisation"></a>Fonctionnement & limites
 ### Parcours type
-1. **Secrétaire** se connecte via `/login_secretaire`.
-2. Crée un nouvel adhérent via le formulaire dédié (`inscription_form`).
-3. Le nouvel adhérent se connecte sur `/login_nageur` avec l’identifiant généré et sa date de naissance.
-4. À la première connexion, il est redirigé vers `/change_password` pour personnaliser son mot de passe.
-5. Il accède ensuite à son tableau de bord `/accueil_nageur`, peut modifier ses informations et consulter le trombinoscope.
+1. Le secrétaire se connecte sur `login_secretaire`.
+2. Il crée un adhérent avec `inscription_form`.
+3. L'adhérent se connecte sur `login_nageur` avec son identifiant et sa date de naissance.
+4. Il est redirigé vers `change_password`.
+5. Ensuite, il utilise `accueil_nageur` : modifier ses informations, consulter le trombinoscope.
 
-### Points de vigilance
-- Le formulaire de modification (`modification_form.html`) est mutualisé côté secrétaire et nageur mais l'accès est contrôlé par des décorateurs `@login_required` et des tests sur `is_superuser`.
-- La suppression d'un adhérent passe par l'archivage : `Archive` conserve l'historique (lien direct dans `views.archiver_nageur`).
+### Ce que fait le code
+- **Création** : un compte Django et une fiche `Inscription` chiffrée.
+- **Saisie** : des regex valident l'e-mail (minuscules), le téléphone français (`0[1-678]` puis 4 paires de chiffres) et le code postal.
+- **Archivage** : `archiver_nageur` copie dans `Archive` le nom, le prénom, la date de naissance, le contact, l'adresse, la date d'inscription et la date de désinscription, puis supprime la fiche `Inscription`. Les pièces jointes et les préférences d'affichage ne sont pas copiées. Le compte Django reste.
+- **Accès** : `@login_required` et un test sur `is_superuser` protègent les vues secrétaire.
+- **Préférences** : l'adhérent choisit d'apparaître ou non dans le trombinoscope et l'annuaire. Seul le secrétaire modifie la cotisation.
 
-### Technologies en pratique
-- Templates : interface responsive Bootstrap/HTML
-- Views : contrôles métiers et gestion des flux secrétaires/nageurs
-- Models : données chiffrées (`django-cryptography`) et fichiers justificatifs (`ImageField`)
-- Regex : validations d’e-mails, téléphones, codes postaux et politique de mot de passe
+### Limites
+- `tests.py` est vide : aucun test automatisé.
+- Le trombinoscope affiche cinq images de démonstration fixées dans la vue. Il ignore la préférence d'affichage.
+- L'annuaire n'a pas de page : seule la préférence est enregistrée.
+- Les champs `ImageField` (fiche d'inscription, certificat médical, autorisation parentale, photo) existent dans les modèles. Les champs d'envoi sont commentés dans `forms.py`.
+- `Categorie` et `Statut` sont définis dans `models.py` et ne servent dans aucune vue.
+- `Regex.verif_cp` refuse les codes dont le deuxième chiffre est 0 (par exemple 30000). La partie 971 à 974 de l'expression ne fonctionne pas comme annoncé.
+- Le chiffrement des champs ne prouve pas une conformité RGPD. Aucune analyse n'est publiée dans le dépôt.
+- Des scripts internes, non publiés, auraient servi à migrer des données Access vers SQLite puis MySQL. À confirmer : le dépôt n'en garde aucune trace.
 
-### Notes sur la migration
-- Des scripts internes (non publiés) ont permis de migrer les données Access vers SQLite/MySQL durant le projet.
-- Le chiffrement de `Inscription` et `Archive` assure la conformité RGPD.
-
-<p align="right"><a href="#top">Retour en haut</a></p>
-
-## <a id="annexes"></a>Annexes & ressources
-- **User Story** – description des rôles et parcours principaux  
+## <a id="annexes"></a>Annexes
+- **User story** : rôles et parcours principaux
   <p align="center"><img src="dossier_technique/userstory.png" alt="User Story LyonPalme" width="600"></p>
 
-- **Modèle Conceptuel de Données (MCD)** – structuration des entités et relations  
+- **MCD** : entités et relations
   <p align="center"><img src="dossier_technique/MCD.png" alt="Modèle Conceptuel de Données" width="500"></p>
 
-- **Diagramme de classes UML** – représentation orientée objet des modèles Django  
+- **Diagramme de classes UML** : modèles Django
   <p align="center"><img src="dossier_technique/UML.png" alt="Diagramme de classes UML" width="500"></p>
 
-- **Diagramme de séquence** – scénario type d'inscription et d'interaction secrétaires/nageurs  
+- **Diagramme de séquence** : inscription et échanges secrétaire / nageur
   <p align="center"><img src="dossier_technique/sequence.png" alt="Diagramme de séquence" width="500"></p>
 
-- Documentation fonctionnelle et dossiers annexes : `dossier_technique/`
-
-<p align="right"><a href="#top">Retour en haut</a></p>
+- Cahier des charges : [`cdc - client léger - gestion des adhérents.pdf`](dossier_technique/cdc%20-%20client%20l%C3%A9ger%20-%20gestion%20des%20adh%C3%A9rents.pdf)
+- Documentation utilisateur : [`Documentation utilisateur.docx`](dossier_technique/Documentation%20utilisateur.docx)
 
 ## <a id="sources"></a>Sources
-- [Documentation officielle Django](https://docs.djangoproject.com/fr/4.2/) – référence pour le paramétrage, les vues et l’ORM.
-- [Guide Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) – composants utilisés pour la mise en forme des templates.
-- [Documentation Python 3.11](https://docs.python.org/3.11/) – bonnes pratiques sur les virtualenvs et modules standard.
-- Cours et supports internes Sup’Chassagnes (Teams) mis à disposition par **Mme Chataing**.
-- Recommandations vidéo :
-  - [La formation complète Django (2022)](https://www.youtube.com/watch?v=Bn0k9DDYBZM&t=5502s)
-  - [Django Python](https://www.youtube.com/watch?v=tZ4LXyJAj3w&list=PLh-rUZWaw76H5XOcYneHhuvypENDCkpAf)
-
-<p align="right"><a href="#top">Retour en haut</a></p>
+- [Documentation officielle Django](https://docs.djangoproject.com/fr/4.1/)
+- [Guide Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [Documentation Python 3.11](https://docs.python.org/3.11/)
+- Cours et supports Sup'Chassagnes (Teams), fournis par Mme Chataing.
+- Vidéos : [La formation complète Django (2022)](https://www.youtube.com/watch?v=Bn0k9DDYBZM&t=5502s), [Django Python](https://www.youtube.com/watch?v=tZ4LXyJAj3w&list=PLh-rUZWaw76H5XOcYneHhuvypENDCkpAf)
 
 ## <a id="remerciements"></a>Remerciements
-Nous remercions sincèrement toutes les personnes qui ont contribué à la réussite de ce projet :
-- **Mme Chataing**, pour son accompagnement constant, ses retours exigeants et la confiance accordée à notre équipe.
-- L’ensemble de l’équipe pédagogique du BTS SIO SLAM, qui nous a transmis les bases techniques exploitées ici.
-- Nos camarades de promotion, pour leurs tests, leurs remarques et leur soutien tout au long de l’année.
-
-<p align="right"><a href="#top">Retour en haut</a></p>
+- **Mme Chataing** pour son suivi et ses retours.
+- L'équipe pédagogique du BTS SIO SLAM.
+- Nos camarades de promotion pour leurs tests et leurs remarques.
